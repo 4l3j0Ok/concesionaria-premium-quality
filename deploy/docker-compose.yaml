@@ -5,6 +5,9 @@ services:
     restart: unless-stopped
     env_file:
       - ./config/backend/.env
+    networks:
+      - nginx-proxy
+      - default
 
   frontend:
     image: alejoide/instituto-concesionaria-frontend:latest
@@ -16,3 +19,8 @@ services:
       - ./config/frontend/.env
     depends_on:
       - backend
+
+networks:
+  nginx-proxy:
+    external:
+      name: nginx-proxy
