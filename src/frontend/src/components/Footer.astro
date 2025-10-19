@@ -1,5 +1,56 @@
+---
+import Logo from "./AlejoideLogo.astro";
+import { Icon } from "astro-icon/components";
+import { Application } from "../core/config";
+const currentYear = new Date().getFullYear();
+---
+
 <footer>
-  <div class="footer-content">
-    <p>© 2021 Premium Quality.<br />Todos los derechos reservados.</p>
-  </div>
+  <content>
+    <Logo />
+    <p>
+      © 2025 {currentYear !== 2025 && `- ${currentYear}`}
+      <span class="project-name">{Application.name} by Alejo Sarmiento</span>
+      v{Application.version}.
+    </p>
+    <div class="links">
+      <a href={Application.githubUrl} target="_blank"
+        ><Icon name="mdi:github" /></a
+      >
+      <a href={Application.linkedinUrl} target="_blank"
+        ><Icon name="mdi:linkedin" /></a
+      >
+      <a href={`mailto:${Application.email}`}><Icon name="mdi:email" /></a>
+    </div>
+  </content>
 </footer>
+
+<style>
+  footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 6em;
+    padding-top: 6em;
+    width: 100%;
+    position: relative;
+    padding-bottom: 2em;
+    background: var(--accent-color-dark);
+    color: white;
+  }
+  content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    width: 80%;
+  }
+  .links {
+    font-size: 2em;
+    margin: 0 0.5em;
+  }
+  .links a {
+    color: white;
+    margin: 0 0.5em;
+  }
+</style>

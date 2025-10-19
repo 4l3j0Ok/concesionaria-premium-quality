@@ -1,5 +1,5 @@
 // @ts-check
-import { defineConfig } from 'astro/config';
+import { defineConfig, envField } from 'astro/config';
 import node from '@astrojs/node';
 import icon from 'astro-icon';
 import react from '@astrojs/react';
@@ -11,6 +11,11 @@ export default defineConfig({
   adapter: node({
     mode: 'standalone'
   }),
-
-  integrations: [icon(), react()]
+  integrations: [icon(), react()],
+  env: {
+    schema: {
+      API_URL: envField.string({ context: "server", access: "secret" }),
+      APP_VERSION: envField.string({ context: "client", access: "public" }),
+    }
+  },
 });
