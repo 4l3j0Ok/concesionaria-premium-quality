@@ -9,7 +9,7 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/node": "^9.4.3",
+    "@astrojs/node": "^9.5.0",
     "@astrojs/react": "^4.4.0",
     "@fontsource/poppins": "^5.2.7",
     "@fontsource/work-sans": "^5.2.8",
@@ -17,7 +17,7 @@
     "@iconify-json/mdi": "^1.2.3",
     "@iconify/react": "^6.0.2",
     "@radix-ui/react-accordion": "^1.2.12",
-    "astro": "^5.13.3",
+    "astro": "^5.14.6",
     "astro-icon": "^1.1.5",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
