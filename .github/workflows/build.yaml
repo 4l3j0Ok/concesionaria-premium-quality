@@ -26,6 +26,7 @@ jobs:
         with:
           tags: |
             type=semver,pattern={{version}}
+            type=raw,value=latest,enable=${{ github.ref == 'refs/heads/main' }}
           images: alejoide/instituto-concesionaria-frontend
       - name: Add env files
         run: |
@@ -39,7 +40,7 @@ jobs:
         with:
           context: ./frontend
           tags: ${{ steps.meta-frontend.outputs.tags }}
-          push: true
+          push: ${{ startsWith(github.ref, 'refs/tags/') }}
           file: ./frontend/Dockerfile
 
   build-backend:
@@ -60,11 +61,12 @@ jobs:
         with:
           tags: |
             type=semver,pattern={{version}}
+            type=raw,value=latest,enable=${{ github.ref == 'refs/heads/main' }}
           images: alejoide/instituto-concesionaria-backend
       - name: Build and push backend
         uses: docker/build-push-action@v5
         with:
           context: ./src/backend
           tags: ${{ steps.meta-backend.outputs.tags }}
-          push: true
+          push: ${{ startsWith(github.ref, 'refs/tags/') }}
           file: ./src/backend/Dockerfile
