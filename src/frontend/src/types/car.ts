@@ -21,7 +21,7 @@ export interface CarFromAPI {
     km: number;
     year: number;
     car_code: string;
-    image: string | null; // URL de la imagen
+    image: string | null; // Base64 string
     features?: CarFeatures;
 }
 
@@ -42,14 +42,12 @@ export interface Car {
     promotionPrice: number | null;
     km: number;
     year: number;
-    img: string; // URL de la imagen
+    img: string; // Data URL o path a imagen por defecto
     features?: CarFeatures;
 }
 
 // Función helper para convertir de API a formato frontend
 export function mapCarFromAPI(car: CarFromAPI): Car {
-    const apiDomain = import.meta.env.API_URL || 'http://localhost:8000';
-
     return {
         code: car.car_code,
         brand: car.brand,
@@ -59,9 +57,9 @@ export function mapCarFromAPI(car: CarFromAPI): Car {
         promotionPrice: car.promotion_price,
         km: car.km,
         year: car.year,
-        // Usar la URL de la imagen directamente desde la API
+        // Si viene base64, crear data URL; si no, usar imagen por defecto
         img: car.image
-            ? `${apiDomain}${car.image}`
+            ? `data:image/jpeg;base64,${car.image}`
             : "/assets/images/chevrolet-astra.webp",
         features: car.features,
     };

@@ -3,21 +3,16 @@ from sqlmodel import select, Session
 from typing import List, Optional
 from fastapi import HTTPException
 import requests
+import base64
 from PIL import Image
 from io import BytesIO
-import os
-from core.config import AppConfig
 
 
 class CarController:
     @staticmethod
-    def _save_image_as_file(image_bytes: bytes, car_code: str) -> str:
-        """Guarda la imagen como archivo WebP y retorna la URL"""
+    def _convert_image_to_webp(image_bytes: bytes) -> bytes:
+        """Convierte una imagen a formato WebP para optimizar el tamaño"""
         try:
-            # Crear directorio de imágenes si no existe
-            images_dir = os.path.join(AppConfig.STATIC_DIR, "data")
-            os.makedirs(images_dir, exist_ok=True)
-
             # Abrir la imagen desde bytes
             img = Image.open(BytesIO(image_bytes))
 
@@ -34,20 +29,21 @@ class CarController:
             elif img.mode != "RGB":
                 img = img.convert("RGB")
 
-            # Generar nombre de archivo único basado en car_code
-            filename = f"{car_code}.webp"
-            filepath = os.path.join(images_dir, filename)
-
-            # Guardar como WebP
-            img.save(filepath, format="WEBP", quality=85, method=6)
-
-            # Retornar la URL pública
-            return f"{AppConfig.STATIC_URL}/data/{filename}"
+            # Guardar como WebP en memoria
+            output = BytesIO()
+            img.save(output, format="WEBP", quality=85, method=6)
+            return output.getvalue()
         except Exception as e:
-            print(f"Error al guardar imagen: {e}")
-            raise HTTPException(
-                status_code=500, detail=f"Error al procesar la imagen: {str(e)}"
-            )
+            # Si falla la conversión, devolver la imagen original
+            print(f"Error al convertir imagen a WebP: {e}")
+            return image_bytes
+
+    @staticmethod
+    def _convert_image_to_base64(car: Car) -> Car:
+        """Convierte la imagen de bytes a base64 para la respuesta"""
+        if car.image and isinstance(car.image, bytes):
+            car.image = base64.b64encode(car.image).decode("utf-8")
+        return car
 
     @staticmethod
     def _convert_features_to_model(car: Car) -> Car:
@@ -76,9 +72,10 @@ class CarController:
         if year:
             query = query.where(Car.year == year)
         cars = session.exec(query.offset(offset).limit(limit)).all()
-        # Convertir features a modelo en todos los coches
+        # Convertir bytes a base64 y features a modelo en todas los coches
         cars_serialized = []
         for car in cars:
+            car = CarController._convert_image_to_base64(car)
             car = CarController._convert_features_to_model(car)
             cars_serialized.append(car)
         return cars_serialized
@@ -107,9 +104,9 @@ class CarController:
             if response.status_code == 200:
                 content_type = response.headers.get("Content-Type", "")
                 if content_type.startswith("image/"):
-                    # Guardar imagen como archivo y obtener URL
-                    car_data["image"] = CarController._save_image_as_file(
-                        response.content, car.car_code
+                    # Convertir a WebP para optimizar tamaño
+                    car_data["image"] = CarController._convert_image_to_webp(
+                        response.content
                     )
                 else:
                     raise HTTPException(
@@ -126,7 +123,8 @@ class CarController:
         session.add(car)
         session.commit()
         session.refresh(car)
-        # Convertir features a modelo antes de devolver
+        # Convertir bytes a base64 y features a modelo antes de devolver
+        car = CarController._convert_image_to_base64(car)
         car = CarController._convert_features_to_model(car)
         return car
 
@@ -140,7 +138,8 @@ class CarController:
         session.add(car)
         session.commit()
         session.refresh(car)
-        # Convertir features a modelo antes de devolver
+        # Convertir bytes a base64 y features a modelo antes de devolver
+        car = CarController._convert_image_to_base64(car)
         car = CarController._convert_features_to_model(car)
         return car
 
