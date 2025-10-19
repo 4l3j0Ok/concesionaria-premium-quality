@@ -10,11 +10,8 @@ import Contact from "../components/Contact";
   <main>
     <Hero />
     <Services />
-    <IndexOffers />
-    <section
-      id="contact"
-      style="background-color: white; padding: 2em; border-radius: var(--border-radius); box-shadow: var(--box-shadow); margin-top: 2em;"
-    >
+    <section class="content">
+      <IndexOffers />
       <Contact client:load />
     </section>
   </main>
@@ -27,6 +24,13 @@ import Contact from "../components/Contact";
     align-items: center;
     flex-direction: column;
     margin-bottom: 5em;
+  }
+  .content {
+    background-color: white;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    padding: 2em;
+    margin-top: 2em;
   }
   section {
     width: 100%;
