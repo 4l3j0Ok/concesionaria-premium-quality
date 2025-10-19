@@ -23,6 +23,8 @@ const { car }: { car: Car } = Astro.props;
             src={car.img}
             alt={`${car.brand} ${car.model}`}
             class="car-image"
+            loading="lazy"
+            decoding="async"
             style={`view-transition-name: image-${car.code}`}
           />
         ) : (
@@ -30,6 +32,7 @@ const { car }: { car: Car } = Astro.props;
             src={CarImage}
             alt={`Imagen de ${car.brand} ${car.model}`}
             class="car-image"
+            loading="lazy"
           />
         )
       }

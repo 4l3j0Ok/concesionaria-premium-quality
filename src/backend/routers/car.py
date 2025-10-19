@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, HTTPException, Query
+from fastapi import APIRouter, Depends, HTTPException, Query, Response
 from typing import Annotated
 from controllers.car import CarController
 from core import db
@@ -12,6 +12,7 @@ router = APIRouter(
 
 @router.get("/cars", response_model=CarResponse)
 def get_cars(
+    response: Response,
     session: Annotated[db.Session, Depends(db.get_session)],
     car_code: Annotated[
         str | None, Query(description="Filtrar por código del vehículo")
@@ -24,6 +25,9 @@ def get_cars(
         100, ge=1, le=1000, description="Número máximo de registros a devolver"
     ),
 ):
+    # Añadir headers de caché para mejorar rendimiento
+    response.headers["Cache-Control"] = "public, max-age=300"  # 5 minutos de caché
+
     cars = CarController.get_cars(
         session=session,
         car_code=car_code,

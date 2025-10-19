@@ -1,0 +1,183 @@
+.car-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2em;
+    width: 100%;
+    padding: 2em 0;
+}
+
+.no-cars-message {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 3em;
+    text-align: center;
+    color: #666;
+    min-height: 300px;
+    background-color: #fff;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+}
+
+.no-cars-message p {
+    margin: 0.5em 0;
+    font-size: 1.1em;
+}
+
+/* Skeleton styles */
+.skeleton-card {
+    background-color: #fff;
+    border-radius: var(--border-radius);
+    padding: 1em;
+    box-shadow: var(--box-shadow);
+    min-width: 200px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+.skeleton-image {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    border-radius: var(--border-radius);
+    animation: shimmer 2s infinite;
+}
+
+.skeleton-title {
+    width: 70%;
+    height: 1.5em;
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    border-radius: 4px;
+    margin-top: 0.5em;
+    animation: shimmer 2s infinite;
+}
+
+.skeleton-price {
+    width: 50%;
+    height: 1.2em;
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    border-radius: 4px;
+    animation: shimmer 2s infinite;
+}
+
+.skeleton-details {
+    width: 60%;
+    height: 1em;
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    border-radius: 4px;
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: 200% 0;
+    }
+
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.95;
+    }
+}
+
+/* Car card styles */
+.car {
+    background-color: #fff;
+    border-radius: var(--border-radius);
+    padding: 1em;
+    box-shadow: var(--box-shadow);
+    min-width: 200px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.car:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.car img,
+.car-image {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border-radius: var(--border-radius);
+}
+
+.car-image-placeholder {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: linear-gradient(135deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    border-radius: var(--border-radius);
+}
+
+.car-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.car h2 {
+    font-size: 1.5rem;
+    margin: 0.5em 0 0.25em 0;
+}
+
+.price-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25em;
+}
+
+.price {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    margin: 0;
+}
+
+.old-price {
+    font-size: 1rem;
+    color: var(--text-color-light);
+    text-decoration: line-through;
+    margin: 0;
+}
+
+.car-details {
+    color: var(--text-color-light);
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+    .car-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5em;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .car-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}

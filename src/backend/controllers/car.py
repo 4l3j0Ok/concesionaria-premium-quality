@@ -4,9 +4,40 @@ from typing import List, Optional
 from fastapi import HTTPException
 import requests
 import base64
+from PIL import Image
+from io import BytesIO
 
 
 class CarController:
+    @staticmethod
+    def _convert_image_to_webp(image_bytes: bytes) -> bytes:
+        """Convierte una imagen a formato WebP para optimizar el tamaño"""
+        try:
+            # Abrir la imagen desde bytes
+            img = Image.open(BytesIO(image_bytes))
+
+            # Convertir a RGB si es necesario (WebP no soporta algunos modos)
+            if img.mode in ("RGBA", "LA", "P"):
+                # Crear fondo blanco para transparencias
+                background = Image.new("RGB", img.size, (255, 255, 255))
+                if img.mode == "P":
+                    img = img.convert("RGBA")
+                background.paste(
+                    img, mask=img.split()[-1] if img.mode in ("RGBA", "LA") else None
+                )
+                img = background
+            elif img.mode != "RGB":
+                img = img.convert("RGB")
+
+            # Guardar como WebP en memoria
+            output = BytesIO()
+            img.save(output, format="WEBP", quality=85, method=6)
+            return output.getvalue()
+        except Exception as e:
+            # Si falla la conversión, devolver la imagen original
+            print(f"Error al convertir imagen a WebP: {e}")
+            return image_bytes
+
     @staticmethod
     def _convert_image_to_base64(car: Car) -> Car:
         """Convierte la imagen de bytes a base64 para la respuesta"""
@@ -73,7 +104,10 @@ class CarController:
             if response.status_code == 200:
                 content_type = response.headers.get("Content-Type", "")
                 if content_type.startswith("image/"):
-                    car_data["image"] = response.content
+                    # Convertir a WebP para optimizar tamaño
+                    car_data["image"] = CarController._convert_image_to_webp(
+                        response.content
+                    )
                 else:
                     raise HTTPException(
                         status_code=400,

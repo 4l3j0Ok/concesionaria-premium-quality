@@ -1,47 +1,48 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import { getCar } from "../lib/cars";
-import { mapCarFromAPI, type Car } from "../types/car";
-import CarGrid from "../components/CarGrid.astro";
+import CarGridComponent from "../components/CarGrid";
 import Contact from "../components/Contact";
 import Stats from "../components/Stats.astro";
 import { Icon } from "astro-icon/components";
 
-// Obtener todos los autos
-let cars: Car[] = [];
+const apiUrl = import.meta.env.API_URL;
+const carsApiUrl = `${apiUrl}/cars`;
+
+// Obtener datos para las estadísticas
+let offerCount = 0;
+let averageDiscount = 0;
 
 try {
-  const carsResponse = await getCar();
-  if (carsResponse && Array.isArray(carsResponse.items)) {
-    cars = carsResponse.items.map(mapCarFromAPI);
+  const response = await fetch(carsApiUrl);
+  const data = await response.json();
+
+  if (data.items && Array.isArray(data.items)) {
+    const offerCars = data.items.filter(
+      (car: any) => car.promotion_price && car.promotion_price < car.price,
+    );
+
+    offerCount = offerCars.length;
+
+    if (offerCount > 0) {
+      averageDiscount =
+        Math.round(
+          (offerCars.reduce(
+            (acc: number, car: any) =>
+              acc + ((car.price - car.promotion_price) / car.price) * 100,
+            0,
+          ) /
+            offerCount) *
+            10,
+        ) / 10;
+    }
   }
 } catch (error) {
-  console.error("Error fetching cars from API:", error);
-  cars = [];
+  console.error("Error fetching offers stats:", error);
 }
-
-// Filtrar solo las ofertas (cars con promotion_price)
-const offerCars = cars.filter(
-  (car) => car.promotionPrice && car.promotionPrice < car.price,
-);
-
-// Calcular estadísticas
-const averageDiscount =
-  offerCars.length > 0
-    ? Math.round(
-        (offerCars.reduce(
-          (acc, car) =>
-            acc + ((car.price - (car.promotionPrice || 0)) / car.price) * 100,
-          0,
-        ) /
-          offerCars.length) *
-          10,
-      ) / 10
-    : 0;
 
 const offerStats = [
   {
-    number: offerCars.length,
+    number: offerCount,
     label: "Ofertas activas",
   },
   {
@@ -65,7 +66,7 @@ const offerStats = [
       <Stats stats={offerStats} />
     </section>
 
-    <CarGrid cars={cars} showOnlyOffers={true} />
+    <CarGridComponent client:load apiUrl={carsApiUrl} showOnlyOffers={true} />
 
     <section class="cta-section">
       <h2>¿No encontraste lo que buscabas?</h2>
