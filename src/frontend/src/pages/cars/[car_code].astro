@@ -144,8 +144,9 @@ const car = mapCarFromAPI(carFromAPI);
   .back-button {
     position: fixed;
     z-index: 10;
-    top: 7em;
-    left: 7em;
+    top: 5em;
+    left: 0;
+    margin-left: 2vw;
     background-color: var(--primary-color);
     box-shadow: var(--box-shadow);
     border-radius: 50%;
@@ -164,6 +165,12 @@ const car = mapCarFromAPI(carFromAPI);
   .contact-button {
     padding: 0.5em 1em;
     font-size: 1rem;
+  }
+
+  @media (max-width: 480px) {
+    .back-button {
+      top: 8em;
+    }
   }
 </style>
 
