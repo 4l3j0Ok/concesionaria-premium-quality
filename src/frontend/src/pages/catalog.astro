@@ -1,25 +1,27 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import CarGridComponent from "../components/CarGrid";
+import { getCar } from "../lib/cars";
+import { mapCarFromAPI, type Car } from "../types/car";
+import CarGrid from "../components/CarGrid.astro";
 import Contact from "../components/Contact";
 import Stats from "../components/Stats.astro";
 
-const apiUrl = import.meta.env.API_URL;
-const carsApiUrl = `${apiUrl}/cars`;
+// Obtener todos los autos
+let cars: Car[] = [];
 
-// Obtener el total de cars para las estadísticas (esto es rápido)
-let totalCars = 0;
 try {
-  const response = await fetch(carsApiUrl);
-  const data = await response.json();
-  totalCars = data.total || data.items?.length || 0;
+  const carsResponse = await getCar();
+  if (carsResponse && Array.isArray(carsResponse.items)) {
+    cars = carsResponse.items.map(mapCarFromAPI);
+  }
 } catch (error) {
-  console.error("Error fetching cars count:", error);
+  console.error("Error fetching cars from API:", error);
+  cars = [];
 }
 
 const catalogStats = [
   {
-    number: totalCars,
+    number: cars.length,
     label: "Vehículos disponibles",
   },
 ];
@@ -35,7 +37,7 @@ const catalogStats = [
       <Stats stats={catalogStats} />
     </section>
 
-    <CarGridComponent client:load apiUrl={carsApiUrl} />
+    <CarGrid cars={cars} />
 
     <Contact client:load />
   </main>
