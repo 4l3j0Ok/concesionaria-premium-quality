@@ -3,6 +3,8 @@ services:
     image: alejoide/instituto-concesionaria-backend:latest
     container_name: instituto-concesionaria-backend
     restart: unless-stopped
+    expose:
+      - "8000"
     env_file:
       - ./config/backend/.env
     networks:
@@ -12,9 +14,9 @@ services:
   frontend:
     image: alejoide/instituto-concesionaria-frontend:latest
     container_name: instituto-concesionaria-frontend
-    ports:
-      - "4321:4321"
     restart: unless-stopped
+    expose:
+      - "4321"
     env_file:
       - ./config/frontend/.env
     depends_on:
