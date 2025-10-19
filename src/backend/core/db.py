@@ -22,6 +22,9 @@ def get_session():
 
 def create_db_and_tables(drop_existing: bool = False):
     """Crear la base de datos y todas las tablas."""
+    data_dir = os.path.dirname(DatabaseConfig.DB_DIR)
+    if not os.path.exists(data_dir):
+        os.makedirs(data_dir)
     if drop_existing:
         SQLModel.metadata.drop_all(engine)
     first_time = not inspect(engine).has_table(Car.__tablename__)

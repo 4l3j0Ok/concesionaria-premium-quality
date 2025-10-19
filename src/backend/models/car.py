@@ -44,7 +44,7 @@ class CarBase(SQLModel):
     )
     km: int = Field(ge=0, description="Kilómetros recorridos del vehículo")
     year: int = Field(ge=1886, le=2100, description="Año de fabricación")
-    image: Optional[Union[AnyUrl, bytes]] = Field(
+    image: Optional[Union[AnyUrl, str]] = Field(
         default=None, description="URL de la imagen del vehículo"
     )
 
@@ -65,7 +65,7 @@ class CarRead(CarBase):
     id: int
     car_code: str
     image: Optional[str] = Field(
-        default=None, description="Imagen del vehículo en formato base64"
+        default=None, description="URL de la imagen del vehículo"
     )
     features: Optional[CarFeatures] = Field(
         default=None, description="Características del vehículo"
@@ -91,8 +91,8 @@ class Car(CarBase, table=True):
     car_code: str = Field(
         min_length=1, max_length=50, description="Código único del vehículo"
     )
-    image: Optional[bytes] = Field(
-        default=None, description="Imagen del vehículo en formato binario"
+    image: Optional[str] = Field(
+        default=None, description="URL de la imagen del vehículo"
     )
     features: Optional[dict] = Field(
         default=None, sa_column=Column(JSON), description="Características del vehículo"

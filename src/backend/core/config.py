@@ -22,7 +22,8 @@ class AppConfig:
 
 class DatabaseConfig:
     DB_FILE_NAME = "database.db"
-    DB_PATH = f"{BASE_DIR}/data/{DB_FILE_NAME}"
+    DB_DIR = f"{BASE_DIR}/data"
+    DB_PATH = f"{DB_DIR}/{DB_FILE_NAME}"
     SQLITE_URL = f"sqlite:///{DB_PATH}"
     CLEAR_DB_ON_STARTUP = os.getenv("CLEAR_DB_ON_STARTUP", "false").lower() in (
         "true",

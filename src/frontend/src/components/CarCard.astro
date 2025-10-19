@@ -19,7 +19,7 @@ const { car }: { car: Car } = Astro.props;
     >
       <div class="car-image-container">
         {
-          car.img && car.img.startsWith("data:") ? (
+          car.img ? (
             <img
               src={car.img}
               alt={`${car.brand} ${car.model}`}
