@@ -28,16 +28,6 @@ FROM python:3.13-alpine
 # Python executable must be the same, e.g., using `python:3.11-slim-bookworm`
 # will fail.
 
-# Install system dependencies required by WeasyPrint
-RUN apk add --no-cache \
-    so:libgobject-2.0.so.0 \
-    so:libpango-1.0.so.0 \
-    so:libharfbuzz.so.0 \
-    so:libharfbuzz-subset.so.0 \
-    so:libfontconfig.so.1 \
-    so:libpangoft2-1.0.so.0 \
-    font-dejavu
-
 # Copy the application from the builder
 COPY --from=builder --chown=app:app /app /app
 
@@ -47,4 +37,4 @@ ENV PATH="/app/.venv/bin:$PATH"
 WORKDIR /app
 
 # Run the FastAPI application by default
-CMD ["python", "-m", "uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["python", "main.py"]
