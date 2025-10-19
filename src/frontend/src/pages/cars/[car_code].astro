@@ -91,6 +91,13 @@ const car = mapCarFromAPI(carFromAPI);
     gap: 2em;
     margin-bottom: 2em;
   }
+
+  @media (max-width: 768px) {
+    .car-header {
+      flex-direction: column;
+    }
+  }
+
   .car-info {
     text-align: right;
   }
@@ -110,7 +117,8 @@ const car = mapCarFromAPI(carFromAPI);
   }
 
   .car-presentation img {
-    width: 640px;
+    max-width: 640px;
+    width: 100%;
     border-radius: var(--border-radius);
     box-shadow: var(--box-shadow);
   }
