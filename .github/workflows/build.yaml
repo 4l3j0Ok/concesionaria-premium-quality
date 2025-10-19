@@ -31,10 +31,10 @@ jobs:
       - name: Build and push frontend
         uses: docker/build-push-action@v5
         with:
-          context: ./frontend
+          context: ./src/frontend
           tags: ${{ steps.meta-frontend.outputs.tags }}
           push: ${{ startsWith(github.ref, 'refs/tags/') }}
-          file: ./frontend/Dockerfile
+          file: ./src/frontend/Dockerfile
 
   build-backend:
     name: Build and push backend
