@@ -24,7 +24,7 @@ jobs:
           mkdir -p "$DEPLOY_PATH"
           mkdir -p "$DEPLOY_PATH/config/backend"
           mkdir -p "$DEPLOY_PATH/config/frontend"
-          cp -f ./docker-compose.yaml "$DEPLOY_PATH/docker-compose.yaml"
+          cp -f ./deploy/docker-compose.yaml "$DEPLOY_PATH/docker-compose.yaml"
           echo "$BACKEND_ENV_CONTENT" > "$DEPLOY_PATH/config/backend/.env"
           echo "$FRONTEND_ENV_CONTENT" > "$DEPLOY_PATH/config/frontend/.env"
         env:
