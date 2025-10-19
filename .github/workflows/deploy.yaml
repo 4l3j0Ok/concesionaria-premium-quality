@@ -1,0 +1,39 @@
+name: deploy
+on:
+  workflow_dispatch:
+  workflow_run:
+    workflows: ["build"]
+    types:
+      - completed
+  push:
+    branches:
+      - main
+    paths:
+      - "docker-compose.yml"
+
+jobs:
+  deploy:
+    name: Deploy to prod
+    runs-on: self-hosted
+    environment: prod
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+      - name: Set up project
+        run: |
+          mkdir -p "$DEPLOY_PATH"
+          mkdir -p "$DEPLOY_PATH/config/backend"
+          mkdir -p "$DEPLOY_PATH/config/frontend"
+          cp -f ./docker-compose.yaml "$DEPLOY_PATH/docker-compose.yaml"
+          echo "$BACKEND_ENV_CONTENT" > "$DEPLOY_PATH/config/backend/.env"
+          echo "$FRONTEND_ENV_CONTENT" > "$DEPLOY_PATH/config/frontend/.env"
+        env:
+          DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
+          BACKEND_ENV_CONTENT: ${{ secrets.BACKEND_ENV_CONTENT }}
+          FRONTEND_ENV_CONTENT: ${{ secrets.FRONTEND_ENV_CONTENT }}
+      - name: Pull changes and restart
+        run: |
+          cd "${{ secrets.DEPLOY_PATH }}"
+          docker compose down --remove-orphans
+          docker compose pull
+          docker compose up -d
