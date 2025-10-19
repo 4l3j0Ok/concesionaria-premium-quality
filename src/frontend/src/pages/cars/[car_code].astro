@@ -38,14 +38,18 @@ const car = mapCarFromAPI(carFromAPI);
             {car.model}
           </h1>
           <p><b>{car.km} km</b></p>
-          <p>
+          <div class="price-container">
             {
               car.promotionPrice && car.promotionPrice < car.price ? (
-                <span class="old-price">${car.price}</span>
-              ) : null
+                <>
+                  <p class="old-price">${car.price.toLocaleString()}</p>
+                  <p class="price">${car.promotionPrice.toLocaleString()}</p>
+                </>
+              ) : (
+                <p class="price">${car.price.toLocaleString()}</p>
+              )
             }
-            ${car.promotionPrice ?? car.price}
-          </p>
+          </div>
           <button
             class="contact-button"
             id="contact-btn"
@@ -55,12 +59,12 @@ const car = mapCarFromAPI(carFromAPI);
           </button>
         </section>
       </section>
-      <section class="car-description">
-        <h2>Descripción</h2>
-        <p>{car.description}</p>
-      </section>
-      <CarFeaturesAccordion features={car.features} client:load />
     </section>
+    <section class="car-description">
+      <h2>Descripción</h2>
+      <p>{car.description}</p>
+    </section>
+    <CarFeaturesAccordion features={car.features} client:load />
     <Contact client:load />
   </main>
 </Layout>
@@ -92,6 +96,17 @@ const car = mapCarFromAPI(carFromAPI);
     margin-bottom: 2em;
   }
 
+  .price-container p {
+    margin: 0;
+  }
+
+  .car .price {
+    color: var(--primary-color);
+    font-weight: bold;
+    font-size: 1.3em;
+    margin: 0;
+  }
+
   @media (max-width: 768px) {
     .car-header {
       flex-direction: column;
@@ -100,6 +115,9 @@ const car = mapCarFromAPI(carFromAPI);
 
   .car-info {
     text-align: right;
+    button {
+      margin-top: 2em;
+    }
   }
 
   .car-info h1 {

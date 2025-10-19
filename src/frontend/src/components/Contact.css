@@ -3,6 +3,7 @@
   display: flex;
   align-items: center;
   flex-direction: column;
+  margin-top: 4em;
 }
 
 .contact-form {
@@ -72,7 +73,8 @@
   width: 80px;
   height: 60px;
   object-fit: cover;
-  border-radius: calc(var(--border-radius) / 2);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
   flex-shrink: 0;
 }
 
