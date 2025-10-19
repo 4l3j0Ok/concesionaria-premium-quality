@@ -28,13 +28,6 @@ jobs:
             type=semver,pattern={{version}}
             type=raw,value=latest,enable=${{ github.ref == 'refs/heads/main' }}
           images: alejoide/instituto-concesionaria-frontend
-      - name: Add env files
-        run: |
-          APP_VERSION=${{ steps.meta-frontend.outputs.version }}
-          echo "$FRONTEND_ENV_CONTENT" > ./frontend/.env
-          echo "APP_VERSION=${APP_VERSION}" >> ./frontend/.env
-        env:
-          FRONTEND_ENV_CONTENT: ${{ secrets.FRONTEND_ENV_CONTENT }}
       - name: Build and push frontend
         uses: docker/build-push-action@v5
         with:
