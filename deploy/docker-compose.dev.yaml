@@ -3,7 +3,7 @@ services:
     image: alejoide/instituto-concesionaria-backend:latest
     container_name: instituto-concesionaria-backend
     build:
-      context: ../backend
+      context: ../src/backend
       dockerfile: Dockerfile
     restart: unless-stopped
     env_file:
@@ -13,7 +13,7 @@ services:
     image: alejoide/instituto-concesionaria-frontend:latest
     container_name: instituto-concesionaria-frontend
     build:
-      context: ../frontend
+      context: ../src/frontend
       dockerfile: Dockerfile
       args:
         - API_URL=http://backend:8000
