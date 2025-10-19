@@ -1,0 +1,116 @@
+---
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import "@fontsource/work-sans";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Astro Basics</title>
+  </head>
+  <body>
+    <Header />
+    <slot />
+    <Footer />
+  </body>
+</html>
+
+<style is:global>
+  :root {
+    --primary-color: #0357af;
+    --primary-color-light: #4a90e2;
+    --primary-color-dark: #003d80;
+    --accent-color: #e4815a;
+    --accent-color-light: #f2a785;
+    --accent-color-dark: #c76b45;
+    --text-color: #333333;
+    --text-color-light: #9f9f9f;
+    --red-color: #cc0000;
+    --red-color-light: #ff4d4d;
+    --background-color: #f5f5f5;
+    --border-radius: 0.5em;
+    --border-radius-bottom: 0 0 0.5em 0.5em;
+    --border-radius: 0.5em;
+    --border-radius-bottom: 0 0 0.5em 0.5em;
+    --box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.4);
+  }
+
+  html,
+  body {
+    font-family: "Work Sans", sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+  }
+
+  * {
+    font-family: inherit;
+  }
+
+  ::selection {
+    background-color: var(--accent-color);
+    color: white;
+  }
+
+  ::-moz-selection {
+    background-color: var(--accent-color);
+    color: white;
+  }
+
+  button {
+    background: linear-gradient(
+      180deg,
+      var(--primary-color),
+      var(--primary-color-dark)
+    );
+    color: white;
+    border: none;
+    border-radius: var(--border-radius);
+    height: 3em;
+    cursor: pointer;
+    padding: 0 1.25em;
+    font-size: 1em;
+    transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease,
+      filter 0.3s ease;
+  }
+
+  button:hover {
+    box-shadow: var(--box-shadow);
+    filter: brightness(1.1);
+  }
+
+  input,
+  textarea {
+    border: 1px solid #ccc;
+    padding: 0.5em;
+    font-size: 1em;
+    font-family: inherit;
+    box-sizing: border-box;
+    border-radius: var(--border-radius);
+    padding: 1em;
+  }
+
+  input:focus,
+  textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0.5em var(--primary-color-light);
+  }
+
+  @view-transition {
+    navigation: auto;
+  }
+</style>

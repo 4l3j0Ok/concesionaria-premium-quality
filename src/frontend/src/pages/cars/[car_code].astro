@@ -1,0 +1,156 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getCar } from "../../lib/cars";
+import { mapCarFromAPI } from "../../types/car";
+import CarFeaturesAccordion from "../../components/CarFeatures";
+import Contact from "../../components/Contact";
+import { Icon } from "astro-icon/components";
+
+const { car_code } = Astro.params;
+const response = await getCar(car_code);
+const carFromAPI = response.items[0];
+const car = mapCarFromAPI(carFromAPI);
+---
+
+<Layout>
+  <main>
+    <a href="/#offers">
+      <button class="back-button">
+        <Icon name="bxs:left-arrow" />
+      </button>
+    </a>
+    <section class="car" style={`view-transition-name: car-card-${car.code}`}>
+      <section class="car-header">
+        <section class="car-presentation">
+          {
+            car.img && (
+              <img
+                src={car.img}
+                alt={`Imagen de ${car.brand} ${car.model}`}
+                style={`view-transition-name: image-${car.code}`}
+              />
+            )
+          }
+        </section>
+        <section class="car-info">
+          <h1 style={`view-transition-name: car-name-${car.code}`}>
+            {car.brand}
+            {car.model}
+          </h1>
+          <p><b>{car.km} km</b></p>
+          <p>
+            {
+              car.promotionPrice && car.promotionPrice < car.price ? (
+                <span class="old-price">${car.price}</span>
+              ) : null
+            }
+            ${car.promotionPrice ?? car.price}
+          </p>
+          <button
+            class="contact-button"
+            id="contact-btn"
+            data-car={JSON.stringify(car)}
+          >
+            Contactar
+          </button>
+        </section>
+      </section>
+      <section class="car-description">
+        <h2>Descripción</h2>
+        <p>{car.description}</p>
+      </section>
+      <CarFeaturesAccordion features={car.features} client:load />
+    </section>
+    <Contact client:load />
+  </main>
+</Layout>
+
+<style>
+  main {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    width: 80%;
+    padding: 2em;
+    padding-bottom: 5em;
+    margin-bottom: 5em;
+    margin-top: 2em;
+  }
+
+  .car {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .car-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 2em;
+    margin-bottom: 2em;
+  }
+  .car-info {
+    text-align: right;
+  }
+
+  .car-info h1 {
+    font-size: 2rem;
+    margin: 0;
+  }
+
+  .car-description {
+    width: 100%;
+  }
+
+  .car .old-price {
+    text-decoration: line-through;
+    color: var(--text-color-light);
+  }
+
+  .car-presentation img {
+    width: 640px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+  }
+
+  .back-button {
+    position: fixed;
+    z-index: 10;
+    top: 7em;
+    left: 7em;
+    background-color: var(--primary-color);
+    box-shadow: var(--box-shadow);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .back-button::before {
+    border-radius: 50%;
+  }
+
+  .contact-button {
+    padding: 0.5em 1em;
+    font-size: 1rem;
+  }
+</style>
+
+<script>
+  const contactBtn = document.getElementById("contact-btn");
+  if (contactBtn) {
+    contactBtn.addEventListener("click", () => {
+      const carData = contactBtn.getAttribute("data-car");
+      if (carData) {
+        localStorage.setItem("contact_car", carData);
+        window.dispatchEvent(new Event("storage"));
+        window.scrollTo(0, document.body.scrollHeight);
+      }
+    });
+  }
+</script>

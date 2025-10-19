@@ -1,0 +1,136 @@
+---
+import Image from "astro/components/Image.astro";
+import Logo from "../assets/images/logo-black-outline.webp";
+---
+
+<header>
+  <div class="header-content">
+    <div class="logo">
+      <a href="/">
+        <Image class="logo-image" src={Logo} alt="Logo Premium Quality" /></a
+      >
+      <h1><a href="/" class="logo-title">Premium Quality</a></h1>
+    </div>
+    <nav class="options">
+      <a href="/">Inicio</a>
+      <a href="/catalog">Catálogo</a>
+      <a href="/offers">Ofertas</a>
+      <a href="/financing">Financiación</a>
+    </nav>
+  </div>
+</header>
+
+<style>
+  header {
+    width: 100%;
+    background-color: white;
+    color: var(--text-color);
+    position: sticky;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    height: 4em;
+    box-shadow: var(--box-shadow);
+    z-index: 1000;
+  }
+
+  .header-content {
+    width: 100%;
+    padding-left: 2em;
+    padding-right: 2em;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .header-content .logo {
+    display: flex;
+    align-items: center;
+    gap: 0.7em;
+  }
+
+  .header-content .logo-image {
+    height: 3em;
+  }
+
+  .header-content img {
+    width: 100%;
+    height: 100%;
+  }
+
+  .options {
+    display: flex;
+    gap: 2em;
+    align-items: center;
+  }
+
+  .options a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 500;
+    position: relative;
+    transition: color 0.3s ease;
+    padding: 0.5em 0;
+  }
+
+  .options a:hover {
+    color: var(--primary-color);
+  }
+
+  .options a::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--primary-color);
+    transition: width 0.3s ease;
+  }
+
+  .options a:hover::after {
+    width: 100%;
+  }
+
+  .logo-title {
+    margin-right: 1em;
+    text-decoration: none;
+    color: inherit;
+    font-weight: 1000;
+  }
+
+  @media (max-width: 768px) {
+    .header-content {
+      padding-left: 1em;
+      padding-right: 1em;
+    }
+
+    .options {
+      gap: 1em;
+      font-size: 0.9rem;
+    }
+
+    .logo h1 {
+      font-size: 1.2rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    header {
+      height: auto;
+      padding: 0.5em 0;
+    }
+
+    .header-content {
+      flex-direction: column;
+      gap: 1em;
+    }
+
+    .options {
+      gap: 0.75em;
+      font-size: 0.85rem;
+    }
+  }
+</style>

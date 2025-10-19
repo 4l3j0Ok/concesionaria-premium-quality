@@ -1,0 +1,91 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { getCar } from "../lib/cars";
+import { mapCarFromAPI, type Car } from "../types/car";
+import CarGrid from "../components/CarGrid.astro";
+import Contact from "../components/Contact";
+import Stats from "../components/Stats.astro";
+
+// Obtener todos los autos
+let cars: Car[] = [];
+
+try {
+  const carsResponse = await getCar();
+  if (carsResponse && Array.isArray(carsResponse.items)) {
+    cars = carsResponse.items.map(mapCarFromAPI);
+  }
+} catch (error) {
+  console.error("Error fetching cars from API:", error);
+  cars = [];
+}
+
+const catalogStats = [
+  {
+    number: cars.length,
+    label: "Vehículos disponibles",
+  },
+];
+---
+
+<Layout>
+  <main>
+    <section class="catalog-header">
+      <h1>Catálogo de Vehículos</h1>
+      <p class="subtitle">
+        Explora nuestra amplia selección de vehículos disponibles
+      </p>
+      <Stats stats={catalogStats} />
+    </section>
+
+    <CarGrid cars={cars} />
+
+    <Contact client:load />
+  </main>
+</Layout>
+
+<style>
+  main {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    width: 80%;
+    padding: 2em;
+    padding-bottom: 5em;
+    margin-bottom: 5em;
+    margin-top: 2em;
+  }
+
+  .catalog-header {
+    text-align: center;
+    margin-bottom: 2em;
+  }
+
+  .catalog-header h1 {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 0.5em;
+  }
+
+  .subtitle {
+    font-size: 1.2rem;
+    color: #666;
+    margin-bottom: 2em;
+  }
+
+  @media (max-width: 768px) {
+    main {
+      width: 95%;
+      padding: 1em;
+    }
+
+    .catalog-header h1 {
+      font-size: 2rem;
+    }
+
+    .subtitle {
+      font-size: 1rem;
+    }
+  }
+</style>

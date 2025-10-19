@@ -1,0 +1,606 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Contact from "../components/Contact";
+import { Icon } from "astro-icon/components";
+import { FINANCING_PLANS } from "../data/financingPlans";
+---
+
+<Layout>
+  <main>
+    <section class="financing-hero">
+      <h1>Financiación a Tu Medida</h1>
+      <p class="hero-subtitle">
+        Hacemos realidad tu sueño de tener el auto que deseas con planes de
+        financiación flexibles y accesibles
+      </p>
+    </section>
+
+    <section class="benefits">
+      <h2>¿Por qué financiar con nosotros?</h2>
+      <div class="benefits-grid">
+        <div class="benefit-card">
+          <div class="benefit-icon">
+            <Icon name="mdi:cash-multiple" />
+          </div>
+          <h3>Cuotas Flexibles</h3>
+          <p>
+            Planes de pago adaptados a tu capacidad económica con cuotas fijas
+            mensuales
+          </p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">
+            <Icon name="mdi:clock-fast" />
+          </div>
+          <h3>Aprobación Rápida</h3>
+          <p>
+            Respuesta en menos de 48 horas para que puedas disfrutar de tu auto
+            cuanto antes
+          </p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">
+            <Icon name="mdi:percent" />
+          </div>
+          <h3>Tasas Competitivas</h3>
+          <p>
+            Las mejores tasas de interés del mercado con opciones desde 0% en
+            promociones
+          </p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">
+            <Icon name="mdi:handshake" />
+          </div>
+          <h3>Sin Complicaciones</h3>
+          <p>Proceso simple y transparente sin letra chica ni cargos ocultos</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="financing-plans" id="plans">
+      <h2>Nuestros Planes de Financiación</h2>
+      <div class="plans-grid">
+        {
+          FINANCING_PLANS.map((plan) => (
+            <div class={`plan-card${plan.featured ? " featured" : ""}`}>
+              {plan.featured && <div class="featured-badge">Más Popular</div>}
+              <div
+                class={`plan-header plan-${plan.id}`}
+                style={`background: ${plan.gradient}`}
+              >
+                <h3>{plan.name}</h3>
+                <div class="plan-price">
+                  <span class="rate">{plan.rate}</span>
+                  <span class="rate-label">{plan.rateLabel}</span>
+                </div>
+              </div>
+              <div class="plan-info">
+                <ul class="plan-features">
+                  {plan.features.map((feature, index) => (
+                    <li
+                      class={
+                        index === plan.features.length - 1 &&
+                        plan.id === "promo"
+                          ? "highlight"
+                          : ""
+                      }
+                    >
+                      <Icon
+                        name={
+                          index === plan.features.length - 1 &&
+                          plan.id === "promo"
+                            ? "mdi:star"
+                            : "mdi:check-circle"
+                        }
+                      />{" "}
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+                <a href="#contact">
+                  <button
+                    class="plan-button"
+                    data-plan-name={plan.name}
+                    data-plan-rate={plan.rate}
+                    data-plan-rate-label={plan.rateLabel}
+                    data-plan-months={plan.months}
+                    data-plan-down-payment={plan.downPayment}
+                  >
+                    Solicitar
+                  </button>
+                </a>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="requirements">
+      <h2>Requisitos para Financiar</h2>
+      <div class="requirements-content">
+        <div class="requirement-category">
+          <h3>
+            <Icon name="mdi:account" /> Documentación Personal
+          </h3>
+          <ul>
+            <li>DNI o documento de identidad vigente</li>
+            <li>Constancia de domicilio (no mayor a 3 meses)</li>
+            <li>Certificado de ingresos o últimos 3 recibos de sueldo</li>
+          </ul>
+        </div>
+        <div class="requirement-category">
+          <h3>
+            <Icon name="mdi:briefcase" /> Requisitos Laborales
+          </h3>
+          <ul>
+            <li>Antigüedad laboral mínima de 6 meses</li>
+            <li>Ingresos mínimos mensuales comprobables</li>
+            <li>Referencias laborales</li>
+          </ul>
+        </div>
+        <div class="requirement-category">
+          <h3>
+            <Icon name="mdi:bank" /> Requisitos Financieros
+          </h3>
+          <ul>
+            <li>Cuenta bancaria activa</li>
+            <li>Buen historial crediticio (Veraz)</li>
+            <li>Capacidad de pago verificable</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="how-it-works">
+      <h2>¿Cómo Funciona?</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-number">1</div>
+          <h3>Elegí tu Auto</h3>
+          <p>
+            Explorá nuestro catálogo y seleccioná el vehículo que más te guste
+          </p>
+        </div>
+        <div class="step">
+          <div class="step-number">2</div>
+          <h3>Completá la Solicitud</h3>
+          <p>Envianos tus datos y documentación requerida de forma segura</p>
+        </div>
+        <div class="step">
+          <div class="step-number">3</div>
+          <h3>Aprobación</h3>
+          <p>Evaluamos tu solicitud y te respondemos en menos de 48 horas</p>
+        </div>
+        <div class="step">
+          <div class="step-number">4</div>
+          <h3>¡Retirá tu Auto!</h3>
+          <p>Firmá el contrato y llevate tu auto el mismo día</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="calculator-cta">
+      <div class="calculator-content">
+        <h2>Calculá tu Cuota</h2>
+        <p>
+          Usá nuestro simulador para estimar el valor de tus cuotas mensuales
+        </p>
+        <div class="calculator-example">
+          <div class="example-item">
+            <span class="example-label">Precio del vehículo:</span>
+            <span class="example-value">$20,000,000</span>
+          </div>
+          <div class="example-item">
+            <span class="example-label">Anticipo (20%):</span>
+            <span class="example-value">$4,000,000</span>
+          </div>
+          <div class="example-item">
+            <span class="example-label">Financiado en 36 meses:</span>
+            <span class="example-value highlight">$533,333/mes</span>
+          </div>
+        </div>
+        <p class="calculator-note">
+          * Ejemplo ilustrativo. Los valores finales pueden variar según el plan
+          elegido y tu perfil crediticio.
+        </p>
+      </div>
+    </section>
+
+    <section id="contact">
+      <Contact client:load />
+    </section>
+  </main>
+</Layout>
+
+<style>
+  main {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    width: 80%;
+    padding: 3em;
+    padding-bottom: 5em;
+    margin-bottom: 5em;
+    margin-top: 2em;
+  }
+
+  section {
+    margin-bottom: 4em;
+  }
+
+  h1,
+  h2 {
+    color: var(--primary-color);
+  }
+
+  /* Hero Section */
+  .financing-hero {
+    text-align: center;
+    padding: 2em 0;
+    background: linear-gradient(
+      135deg,
+      var(--primary-color-light),
+      var(--primary-color)
+    );
+    color: white;
+    border-radius: var(--border-radius);
+    margin: -1em -1em 3em -1em;
+    padding: 3em 2em;
+  }
+
+  .financing-hero h1 {
+    font-size: 3rem;
+    margin-bottom: 0.5em;
+    color: white;
+  }
+
+  .hero-subtitle {
+    font-size: 1.3rem;
+    opacity: 0.95;
+  }
+
+  /* Benefits Section */
+  .benefits h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 2em;
+  }
+
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2em;
+  }
+
+  .benefit-card {
+    text-align: center;
+    padding: 2em;
+    background-color: var(--background-color);
+    border-radius: var(--border-radius);
+    transition: transform 0.3s ease;
+  }
+
+  .benefit-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--box-shadow);
+  }
+
+  .benefit-icon {
+    font-size: 3rem;
+    color: var(--primary-color);
+    margin-bottom: 1em;
+  }
+
+  .benefit-card h3 {
+    color: var(--primary-color);
+    margin-bottom: 0.5em;
+  }
+
+  /* Financing Plans */
+  .financing-plans h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 2em;
+  }
+
+  .plans-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2em;
+  }
+
+  .plan-card {
+    background-color: white;
+    border: 2px solid #e0e0e0;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .plan-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  }
+
+  .plan-card.featured {
+    border-width: 3px;
+  }
+
+  .featured-badge {
+    position: absolute;
+    top: 30px;
+    right: -30px;
+    background-color: var(--accent-color);
+    color: white;
+    padding: 0.3em 2.5em;
+    transform: rotate(45deg);
+    font-size: 0.85rem;
+    font-weight: bold;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    text-align: center;
+  }
+
+  .plan-header {
+    padding: 2em;
+    color: white;
+    text-align: center;
+  }
+
+  .plan-header h3 {
+    margin: 0 0 1em 0;
+    font-size: 1.5rem;
+  }
+
+  .plan-price {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .rate {
+    font-size: 3rem;
+    font-weight: bold;
+  }
+
+  .rate-label {
+    font-size: 1rem;
+    opacity: 0.9;
+  }
+
+  .plan-info {
+    display: flex;
+    flex-direction: column;
+    padding: 2em;
+    justify-content: space-between;
+    height: 100%;
+  }
+
+  .plan-features {
+    list-style: none;
+    margin: 0;
+  }
+
+  .plan-features li {
+    padding: 0.75em 0;
+    border-bottom: 1px solid #f0f0f0;
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+  }
+
+  .plan-features li:last-child {
+    border-bottom: none;
+  }
+
+  .plan-features li.highlight {
+    color: var(--accent-color);
+    font-weight: bold;
+  }
+
+  .plan-features [data-icon] {
+    color: var(--primary-color);
+    font-size: 1.2em;
+  }
+
+  .plan-button {
+    width: 100%;
+  }
+
+  /* Requirements Section */
+  .requirements h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 2em;
+  }
+
+  .requirements-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2em;
+  }
+
+  .requirement-category {
+    background-color: var(--background-color);
+    padding: 2em;
+    border-radius: var(--border-radius);
+  }
+
+  .requirement-category h3 {
+    color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    margin-bottom: 1em;
+  }
+
+  .requirement-category h3 [data-icon] {
+    font-size: 1.5em;
+  }
+
+  .requirement-category ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .requirement-category li {
+    padding: 0.5em 0;
+    padding-left: 1.5em;
+    position: relative;
+  }
+
+  .requirement-category li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--primary-color);
+    font-weight: bold;
+  }
+
+  /* How it Works */
+  .how-it-works h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 2em;
+  }
+
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2em;
+  }
+
+  .step {
+    text-align: center;
+    padding: 2em;
+  }
+
+  .step-number {
+    width: 60px;
+    height: 60px;
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 0 auto 1em auto;
+  }
+
+  .step h3 {
+    color: var(--primary-color);
+    margin-bottom: 0.5em;
+  }
+
+  /* Calculator CTA */
+  .calculator-cta {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 3em;
+    border-radius: var(--border-radius);
+    text-align: center;
+  }
+
+  .calculator-cta h2 {
+    color: white;
+    font-size: 2rem;
+    margin-bottom: 0.5em;
+  }
+
+  .calculator-example {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 2em;
+    border-radius: var(--border-radius);
+    margin: 2em 0;
+  }
+
+  .example-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 1em 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .example-item:last-child {
+    border-bottom: none;
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+
+  .example-value.highlight {
+    color: var(--accent-color-light);
+  }
+
+  .calculator-note {
+    font-size: 0.9rem;
+    opacity: 0.8;
+    font-style: italic;
+  }
+
+  @media (max-width: 768px) {
+    main {
+      width: 95%;
+      padding: 1em;
+    }
+
+    .financing-hero h1 {
+      font-size: 2rem;
+    }
+
+    .hero-subtitle {
+      font-size: 1rem;
+    }
+
+    .benefits-grid,
+    .plans-grid,
+    .requirements-content,
+    .steps {
+      grid-template-columns: 1fr;
+    }
+
+    .example-item {
+      flex-direction: column;
+      gap: 0.5em;
+    }
+  }
+</style>
+
+<script>
+  const STORAGE_PLAN_KEY = "contact_plan";
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const planButtons = document.querySelectorAll(".plan-button");
+
+    planButtons.forEach((button) => {
+      button.addEventListener("click", (e) => {
+        const btn = e.currentTarget as HTMLButtonElement;
+        const plan = {
+          name: btn.dataset.planName,
+          rate: btn.dataset.planRate,
+          rateLabel: btn.dataset.planRateLabel,
+          months: parseInt(btn.dataset.planMonths || "0"),
+          downPayment: parseInt(btn.dataset.planDownPayment || "0"),
+        };
+
+        console.log("Plan guardado:", plan);
+
+        // Guardar el plan en localStorage
+        localStorage.setItem(STORAGE_PLAN_KEY, JSON.stringify(plan));
+
+        // Disparar evento de storage manualmente para la misma pestaña
+        window.dispatchEvent(new Event("storage"));
+      });
+    });
+  });
+</script>

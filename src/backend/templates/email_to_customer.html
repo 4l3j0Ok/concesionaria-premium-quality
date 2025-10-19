@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmación de mensaje recibido</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f5f5;
+            color: #333333;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #0357af 0%, #4a90e2 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0 0 10px 0;
+            font-size: 28px;
+            font-weight: 600;
+        }
+
+        .header p {
+            margin: 0;
+            opacity: 0.95;
+            font-size: 16px;
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        .greeting {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .message-recap {
+            background-color: #f0f8ff;
+            border-left: 4px solid #0357af;
+            border-radius: 4px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .message-recap h3 {
+            color: #0357af;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .message-text {
+            color: #555;
+            line-height: 1.6;
+            white-space: pre-wrap;
+        }
+
+        .car-section,
+        .plan-section {
+            background-color: #fff;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .car-section h3,
+        .plan-section h3 {
+            color: #0357af;
+            margin-bottom: 15px;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .car-details,
+        .plan-details {
+            display: grid;
+            gap: 10px;
+        }
+
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .detail-row:last-child {
+            border-bottom: none;
+        }
+
+        .detail-label {
+            font-weight: 600;
+            color: #666;
+        }
+
+        .detail-value {
+            color: #333;
+            text-align: right;
+        }
+
+        .info-box {
+            background-color: #e7f3ff;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .info-box p {
+            margin: 5px 0;
+            color: #0357af;
+            line-height: 1.6;
+        }
+
+        .info-box strong {
+            font-size: 18px;
+        }
+
+        .footer {
+            background-color: #f8f9fa;
+            padding: 25px;
+            text-align: center;
+            color: #666;
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+        .footer p {
+            margin: 5px 0;
+        }
+
+        .divider {
+            height: 2px;
+            background: linear-gradient(to right, transparent, #0357af, transparent);
+            margin: 25px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>✅ ¡Mensaje Recibido!</h1>
+            <p>Gracias por contactarte con nosotros</p>
+        </div>
+
+        <div class="content">
+            <p class="greeting">Hola <strong>{{ contact_name }}</strong>,</p>
+
+            <p style="margin-bottom: 20px; color: #555; line-height: 1.6;">
+                Hemos recibido tu mensaje y queremos confirmarte que un miembro de nuestro equipo
+                lo revisará en breve. Nos pondremos en contacto contigo lo antes posible.
+            </p>
+
+            <div class="divider"></div>
+
+            <div class="message-recap">
+                <h3>📝 Tu mensaje:</h3>
+                <div class="message-text">{{ contact_message }}</div>
+            </div>
+
+            {% if car %}
+            <div class="car-section">
+                <h3><span>🚗</span> Vehículo consultado</h3>
+                <div class="car-details">
+                    <div class="detail-row">
+                        <span class="detail-label">Vehículo: </span>
+                        <span class="detail-value"><strong>{{ car.brand }} {{ car.model }}</strong></span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Año: </span>
+                        <span class="detail-value">{{ car.year }}</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Kilómetros: </span>
+                        <span class="detail-value">{{ "{:,}".format(car.km) }} km</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Precio: </span>
+                        <span class="detail-value"><strong>${{ "{:,}".format(car.price) }}</strong></span>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+
+            {% if plan %}
+            <div class="plan-section">
+                <h3><span>💳</span> Plan de financiación consultado</h3>
+                <div class="plan-details">
+                    <div class="detail-row">
+                        <span class="detail-label">Plan: </span>
+                        <span class="detail-value"><strong>{{ plan.name }}</strong></span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Tasa: </span>
+                        <span class="detail-value">{{ plan.rate }} <small>({{ plan.rateLabel }})</small></span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Plazo máximo: </span>
+                        <span class="detail-value">{{ plan.months }} meses</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Anticipo requerido: </span>
+                        <span class="detail-value">{{ plan.downPayment }}%</span>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+
+            <div class="info-box">
+                <p><strong>📞 Tiempo de respuesta estimado:</strong></p>
+                <p>24-48 horas hábiles</p>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p><strong>Concesionaria AutoPremium</strong></p>
+            <p>Este es un correo automático, por favor no respondas a este mensaje.</p>
+            <p>Si necesitas ayuda inmediata, contáctanos directamente.</p>
+        </div>
+    </div>
+</body>
+
+</html>

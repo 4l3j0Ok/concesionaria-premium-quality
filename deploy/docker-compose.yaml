@@ -1,0 +1,26 @@
+services:
+  backend:
+    image: alejoide/instituto-concesionaria-backend:latest
+    container_name: instituto-concesionaria-backend
+    build:
+      context: ../backend
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    env_file:
+      - ./config/backend/.env
+
+  frontend:
+    image: alejoide/instituto-concesionaria-frontend:latest
+    container_name: instituto-concesionaria-frontend
+    build:
+      context: ../frontend
+      dockerfile: Dockerfile
+      args:
+        - API_URL=http://backend:8000
+    ports:
+      - "4321:4321"
+    restart: unless-stopped
+    env_file:
+      - ./config/frontend/.env
+    depends_on:
+      - backend

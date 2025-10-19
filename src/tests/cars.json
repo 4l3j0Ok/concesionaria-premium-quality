@@ -1,0 +1,317 @@
+[
+    {
+        "brand": "Ford",
+        "model": "Ka",
+        "description": "El Ford Ka es un compacto urbano diseñado para moverse con soltura en espacios reducidos. Su tamaño lo hace ideal para estacionar en zonas céntricas, mientras que su motor de bajo consumo ofrece un excelente equilibrio entre rendimiento y economía. El interior, aunque sencillo, brinda una posición de manejo cómoda y un tablero intuitivo. Es un vehículo pensado para quienes buscan practicidad y mantenimiento accesible sin resignar confiabilidad. Perfecto como primer auto o para uso diario en ciudad.",
+        "price": 40000000,
+        "promotion_price": 35000000,
+        "km": 85000,
+        "year": 2010,
+        "image": "http://localhost:8000/public/tests/ford-ka.jpg",
+        "car_code": "ford-ka",
+        "features": {
+            "fuel_type": "Nafta",
+            "transmission": "Manual",
+            "body_type": "Hatchback",
+            "passengers": 5,
+            "doors": 5,
+            "air_conditioning": true,
+            "airbags": 2,
+            "abs": true
+        }
+    },
+    {
+        "brand": "Chevrolet",
+        "model": "Spark",
+        "description": "El Chevrolet Spark es un hatchback pequeño que combina tamaño compacto con una sorprendente amplitud interior. Su diseño ágil y su dirección ligera facilitan la conducción en el tráfico urbano, mientras que su motor eficiente lo vuelve una opción económica para uso diario. Posee un chasis bien equilibrado y un sistema de suspensión que absorbe adecuadamente las irregularidades del camino. Su confiabilidad mecánica y su bajo costo de mantenimiento lo convierten en una de las opciones más racionales en el segmento.",
+        "price": 45000000,
+        "promotion_price": 40000000,
+        "km": 67000,
+        "year": 2012,
+        "image": "http://localhost:8000/public/tests/chevrolet-spark.jpg",
+        "car_code": "chevrolet-spark",
+        "features": {
+            "fuel_type": "Nafta",
+            "transmission": "Manual",
+            "body_type": "Hatchback",
+            "passengers": 5,
+            "doors": 5,
+            "air_conditioning": true,
+            "airbags": 2,
+            "abs": true
+        }
+    },
+    {
+        "brand": "Toyota",
+        "model": "Corolla",
+        "description": "El Toyota Corolla es un sedán reconocido mundialmente por su durabilidad y confort. Este modelo ofrece una excelente calidad de rodaje, con un motor confiable, transmisión suave y un consumo reducido incluso en trayectos largos. Su interior combina materiales resistentes con un diseño sobrio y ergonómico. Ideal tanto para familias como para quienes priorizan confiabilidad a largo plazo, el Corolla representa la esencia del auto equilibrado: seguro, cómodo y económico de mantener.",
+        "price": 95000000,
+        "promotion_price": 90000000,
+        "km": 45000,
+        "year": 2018,
+        "image": "http://localhost:8000/public/tests/toyota-corolla.jpg",
+        "car_code": "toyota-corolla",
+        "features": {
+            "fuel_type": "Nafta",
+            "transmission": "Automática",
+            "body_type": "Sedán",
+            "passengers": 5,
+            "doors": 4,
+            "air_conditioning": true,
+            "airbags": 7,
+            "abs": true
+        }
+    },
+    {
+        "brand": "Volkswagen",
+        "model": "Gol",
+        "description": "El Volkswagen Gol es un clásico indiscutido en Latinoamérica. Su mecánica sencilla, estructura robusta y disponibilidad de repuestos lo convierten en uno de los autos más prácticos del mercado. Ofrece un comportamiento dinámico estable, ideal tanto para ciudad como para ruta. Su interior es funcional, con los controles principales al alcance y una excelente visibilidad. Es una elección acertada para quien busca fiabilidad, mantenimiento económico y una conducción sin complicaciones.",
+        "price": 58000000,
+        "promotion_price": 55000000,
+        "km": 92000,
+        "year": 2015,
+        "image": "http://localhost:8000/public/tests/volkswagen-gol.jpg",
+        "car_code": "volkswagen-gol",
+        "features": {
+            "fuel_type": "Nafta",
+            "transmission": "Manual",
+            "body_type": "Hatchback",
+            "passengers": 5,
+            "doors": 5,
+            "air_conditioning": true,
+            "airbags": 2,
+            "abs": true
+        }
+    },
+    {
+        "brand": "Renault",
+        "model": "Sandero",
+        "description": "El Renault Sandero es un hatchback espacioso, pensado para quienes necesitan practicidad sin perder comodidad. Su habitáculo es amplio, con buen espacio para las piernas en ambas filas, y su baúl figura entre los más grandes del segmento. Ofrece una suspensión cómoda y un andar suave, ideal para caminos urbanos y rutas secundarias. Su motor equilibrado prioriza el consumo moderado y la confiabilidad. Es una opción excelente para familias jóvenes o conductores que buscan versatilidad y bajo mantenimiento.",
+        "price": 62000000,
+        "promotion_price": 59000000,
+        "km": 60000,
+        "year": 2017,
+        "image": "http://localhost:8000/public/tests/renault-sandero.jpg",
+        "car_code": "renault-sandero",
+        "features": {
+            "fuel_type": "Nafta",
+            "transmission": "Manual",
+            "body_type": "Hatchback",
+            "passengers": 5,
+            "doors": 5,
+            "air_conditioning": true,
+            "airbags": 4,
+            "abs": true
+        }
+    },
+    {
+        "brand": "Peugeot",
+        "model": "208",
+        "description": "El Peugeot 208 combina diseño moderno con una experiencia de conducción refinada. Su interior es de los más atractivos del segmento, con un tablero i-Cockpit caracterizado por su volante compacto y su pantalla digital elevada. El motor ofrece buena respuesta y eficiencia, y el aislamiento acústico brinda un viaje silencioso y placentero. La calidad de materiales, el equipamiento tecnológico y la sensación de solidez general lo posicionan como uno de los hatchbacks más completos de su categoría.",
+        "price": 98000000,
+        "promotion_price": 95000000,
+        "km": 30000,
+        "year": 2020,
+        "image": "http://localhost:8000/public/tests/peugeot-208.jpg",
+        "car_code": "peugeot-208",
+        "features": {
+            "fuel_type": "Nafta",
+            "transmission": "Automática",
+            "body_type": "Hatchback",
+            "passengers": 5,
+            "doors": 5,
+            "air_conditioning": true,
+            "airbags": 6,
+            "abs": true
+        }
+    },
+    {
+        "brand": "Fiat",
+        "model": "Cronos",
+        "description": "El Fiat Cronos es un sedán fabricado en Argentina que se destaca por su estilo contemporáneo y su amplio baúl, ideal para viajes familiares. Cuenta con un motor de buen rendimiento y un consumo moderado, junto con una dirección precisa que mejora la maniobrabilidad urbana. En el interior, ofrece materiales bien terminados y un sistema multimedia intuitivo. Es un vehículo pensado para quienes priorizan espacio, confort y practicidad sin salir del rango de los autos económicos.",
+        "price": 105000000,
+        "promotion_price": 99000000,
+        "km": 25000,
+        "year": 2021,
+        "image": "http://localhost:8000/public/tests/fiat-cronos.jpg",
+        "car_code": "fiat-cronos",
+        "features": {
+            "fuel_type": "Nafta",
+            "transmission": "Manual",
+            "body_type": "Sedán",
+            "passengers": 5,
+            "doors": 4,
+            "air_conditioning": true,
+            "airbags": 4,
+            "abs": true
+        }
+    },
+    {
+        "brand": "Honda",
+        "model": "Civic",
+        "description": "El Honda Civic ofrece una combinación equilibrada entre elegancia, deportividad y eficiencia. Su chasis bien afinado y su dirección precisa brindan una sensación de conducción superior dentro del segmento. El motor, silencioso y elástico, responde con suavidad tanto en ciudad como en ruta. En el interior, materiales de alta calidad, un diseño ergonómico y una insonorización notable elevan la experiencia de manejo. Es una opción para quienes valoran la calidad de construcción japonesa y la durabilidad comprobada.",
+        "price": 130000000,
+        "promotion_price": 125000000,
+        "km": 38000,
+        "year": 2019,
+        "image": "http://localhost:8000/public/tests/honda-civic.jpg",
+        "car_code": "honda-civic",
+        "features": {
+            "fuel_type": "Nafta",
+            "transmission": "CVT",
+            "body_type": "Sedán",
+            "passengers": 5,
+            "doors": 4,
+            "air_conditioning": true,
+            "airbags": 6,
+            "abs": true
+        }
+    },
+    {
+        "brand": "Nissan",
+        "model": "Versa",
+        "description": "El Nissan Versa se presenta como un sedán de corte práctico y moderno, con un interior amplio y cómodo. Su motor ofrece un equilibrio interesante entre potencia y consumo, acompañado de una transmisión suave que mejora la eficiencia en ciudad. Incluye múltiples elementos de seguridad activa y pasiva, destacando dentro de su rango de precio. Su conducción es predecible y estable, ideal para quienes buscan un vehículo confiable, seguro y con una buena relación costo-beneficio.",
+        "price": 89000000,
+        "promotion_price": 85000000,
+        "km": 54000,
+        "year": 2018,
+        "image": "http://localhost:8000/public/tests/nissan-versa.jpg",
+        "car_code": "nissan-versa",
+        "features": {
+            "fuel_type": "Nafta",
+            "transmission": "Automática",
+            "body_type": "Sedán",
+            "passengers": 5,
+            "doors": 4,
+            "air_conditioning": true,
+            "airbags": 4,
+            "abs": true
+        }
+    },
+    {
+        "brand": "Hyundai",
+        "model": "i20",
+        "description": "El Hyundai i20 es un hatchback de estética moderna que combina tecnología, eficiencia y una calidad percibida destacable. Su motor de bajo consumo ofrece una respuesta ágil, ideal para el uso urbano, mientras que el interior sorprende por su diseño elegante y su nivel de equipamiento. Los materiales son sólidos y el sistema multimedia ofrece conectividad completa con smartphones. Es un auto pensado para quienes buscan un balance entre estilo, confort y fiabilidad.",
+        "price": 97000000,
+        "promotion_price": 94000000,
+        "km": 41000,
+        "year": 2020,
+        "image": "http://localhost:8000/public/tests/hyundai-i20.jpg",
+        "car_code": "hyundai-i20",
+        "features": {
+            "fuel_type": "Nafta",
+            "transmission": "Manual",
+            "body_type": "Hatchback",
+            "passengers": 5,
+            "doors": 5,
+            "air_conditioning": true,
+            "airbags": 6,
+            "abs": true
+        }
+    },
+    {
+        "brand": "Kia",
+        "model": "Rio",
+        "description": "El Kia Rio destaca por su equilibrio general. Su diseño exterior sobrio esconde un chasis sólido y un interior muy bien terminado. Su motor eficiente y su caja de cambios bien escalonada proporcionan un andar suave, mientras que su suspensión logra un buen balance entre firmeza y comodidad. A nivel de equipamiento, incluye conectividad avanzada, control de estabilidad y múltiples airbags. Ideal para quienes buscan un compacto de aspecto moderno y excelente calidad global.",
+        "price": 98000000,
+        "promotion_price": 95000000,
+        "km": 36000,
+        "year": 2020,
+        "image": "http://localhost:8000/public/tests/kia-rio.jpg",
+        "car_code": "kia-rio",
+        "features": {
+            "fuel_type": "Nafta",
+            "transmission": "Automática",
+            "body_type": "Hatchback",
+            "passengers": 5,
+            "doors": 5,
+            "air_conditioning": true,
+            "airbags": 6,
+            "abs": true
+        }
+    },
+    {
+        "brand": "Jeep",
+        "model": "Renegade",
+        "description": "El Jeep Renegade es un SUV compacto que combina la robustez característica de la marca con un diseño atractivo y juvenil. Su estructura sólida transmite seguridad y su suspensión independiente en las cuatro ruedas garantiza confort incluso fuera del asfalto. Dispone de opciones de tracción delantera o integral, con motores confiables y buen despeje del suelo. Su interior ofrece una posición de manejo elevada, materiales duraderos y una sensación de solidez general que lo diferencia de sus competidores urbanos.",
+        "price": 145000000,
+        "promotion_price": 139000000,
+        "km": 42000,
+        "year": 2019,
+        "image": "http://localhost:8000/public/tests/jeep-renegade.jpg",
+        "car_code": "jeep-renegade",
+        "features": {
+            "fuel_type": "Nafta",
+            "transmission": "Automática",
+            "body_type": "SUV",
+            "passengers": 5,
+            "doors": 5,
+            "air_conditioning": true,
+            "airbags": 7,
+            "abs": true
+        }
+    },
+    {
+        "brand": "Ford",
+        "model": "Ranger",
+        "description": "La Ford Ranger es una pickup de tamaño mediano con un enfoque en la durabilidad y el rendimiento. Capaz de afrontar trabajos exigentes, combina una estructura reforzada con motores potentes y una transmisión confiable. Su interior ha evolucionado hacia un entorno más confortable, con equipamiento de nivel automotriz y sistemas de asistencia a la conducción. Tanto en caminos rurales como en ruta, la Ranger mantiene una conducción estable, destacándose como una herramienta de trabajo que también ofrece comodidad de uso diario.",
+        "price": 220000000,
+        "promotion_price": 210000000,
+        "km": 60000,
+        "year": 2020,
+        "image": "http://localhost:8000/public/tests/ford-ranger.jpg",
+        "car_code": "ford-ranger",
+        "features": {
+            "fuel_type": "Diésel",
+            "transmission": "Automática",
+            "body_type": "Pickup",
+            "passengers": 5,
+            "doors": 4,
+            "air_conditioning": true,
+            "airbags": 6,
+            "abs": true
+        }
+    },
+    {
+        "brand": "Chevrolet",
+        "model": "Onix",
+        "description": "El Chevrolet Onix es uno de los hatchbacks más vendidos de la región gracias a su equilibrio entre diseño, tecnología y seguridad. Su motor turbo ofrece excelente eficiencia sin sacrificar rendimiento, y el interior incluye una de las mejores interfaces multimedia del segmento. Posee múltiples airbags, control de estabilidad y una calidad de rodaje superior a la media. Es ideal tanto para uso urbano como en ruta, destacando por su bajo consumo, conectividad y equipamiento moderno.",
+        "price": 110000000,
+        "promotion_price": 106000000,
+        "km": 29000,
+        "year": 2021,
+        "image": "http://localhost:8000/public/tests/chevrolet-onix.jpg",
+        "car_code": "chevrolet-onix",
+        "features": {
+            "fuel_type": "Nafta",
+            "transmission": "Automática",
+            "body_type": "Hatchback",
+            "passengers": 5,
+            "doors": 5,
+            "air_conditioning": true,
+            "airbags": 6,
+            "abs": true
+        }
+    },
+    {
+        "brand": "Mazda",
+        "model": "3",
+        "description": "El Mazda 3 es un sedán de diseño elegante que prioriza la experiencia de conducción. Su chasis afinado, la dirección precisa y la calidad de rodaje lo colocan a la altura de vehículos premium. El habitáculo está cuidadosamente diseñado, con materiales de primer nivel y un enfoque minimalista centrado en el conductor. Ofrece buena insonorización y un motor eficiente con excelente respuesta. Es una opción perfecta para quienes disfrutan manejar y buscan un vehículo que combine estética, calidad y desempeño.",
+        "price": 155000000,
+        "promotion_price": 150000000,
+        "km": 31000,
+        "year": 2021,
+        "image": "http://localhost:8000/public/tests/mazda-3.jpg",
+        "car_code": "mazda-3",
+        "features": {
+            "fuel_type": "Nafta",
+            "transmission": "Automática",
+            "body_type": "Sedán",
+            "passengers": 5,
+            "doors": 4,
+            "air_conditioning": true,
+            "airbags": 6,
+            "abs": true
+        }
+    }
+]

@@ -1,0 +1,72 @@
+---
+import type { Car } from "../types/car";
+import CarCard from "./CarCard.astro";
+
+interface Props {
+  cars: Car[];
+  showOnlyOffers?: boolean;
+}
+
+const { cars, showOnlyOffers = false } = Astro.props;
+
+// Filtrar autos según el modo
+const displayCars = showOnlyOffers
+  ? cars.filter((car) => car.promotionPrice && car.promotionPrice < car.price)
+  : cars;
+---
+
+<section class="car-grid">
+  {
+    displayCars.length > 0 ? (
+      displayCars.map((car: Car) => <CarCard car={car} />)
+    ) : (
+      <div class="no-cars-message">
+        <p>No hay vehículos disponibles en este momento.</p>
+        <p>Por favor, verifica que la API esté funcionando correctamente.</p>
+      </div>
+    )
+  }
+</section>
+
+<style>
+  .car-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2em;
+    width: 100%;
+    padding: 2em 0;
+  }
+
+  .no-cars-message {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 3em;
+    text-align: center;
+    color: #666;
+    min-height: 300px;
+    background-color: #fff;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+  }
+
+  .no-cars-message p {
+    margin: 0.5em 0;
+    font-size: 1.1em;
+  }
+
+  @media (max-width: 768px) {
+    .car-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5em;
+    }
+  }
+
+  @media (min-width: 769px) and (max-width: 1024px) {
+    .car-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style>

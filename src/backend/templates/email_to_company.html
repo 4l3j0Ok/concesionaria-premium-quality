@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuevo mensaje de contacto</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f5f5;
+            color: #333333;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #0357af 0%, #4a90e2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        .info-section {
+            margin-bottom: 25px;
+        }
+
+        .info-label {
+            font-weight: 600;
+            color: #0357af;
+            margin-bottom: 5px;
+            font-size: 14px;
+            text-transform: uppercase;
+        }
+
+        .info-value {
+            color: #333333;
+            font-size: 16px;
+            padding: 10px;
+            background-color: #f8f9fa;
+            border-radius: 4px;
+            border-left: 3px solid #0357af;
+        }
+
+        .message-box {
+            background-color: #f0f8ff;
+            border: 2px solid #4a90e2;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            white-space: pre-wrap;
+            line-height: 1.6;
+        }
+
+        .car-section,
+        .plan-section {
+            background-color: #f0f8ff;
+            border: 2px solid #4a90e2;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .car-section h3,
+        .plan-section h3 {
+            color: #0357af;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+
+        .car-details,
+        .plan-details {
+            display: grid;
+            gap: 10px;
+        }
+
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .detail-row:last-child {
+            border-bottom: none;
+        }
+
+        .detail-label {
+            font-weight: 600;
+            color: #666;
+        }
+
+        .detail-value {
+            color: #333;
+        }
+
+        .footer {
+            background-color: #f8f9fa;
+            padding: 20px;
+            text-align: center;
+            color: #666;
+            font-size: 12px;
+        }
+
+        .alert {
+            background-color: #fff3cd;
+            border: 1px solid #ffc107;
+            border-radius: 4px;
+            padding: 12px;
+            margin: 15px 0;
+            color: #856404;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📧 Nuevo Mensaje de Contacto</h1>
+        </div>
+
+        <div class="content">
+            <div class="alert">
+                <strong>⚠️ Atención:</strong> Un cliente ha enviado una consulta. Responde lo antes posible.
+            </div>
+
+            <div class="info-section">
+                <div class="info-label">Nombre del Cliente</div>
+                <div class="info-value">{{ contact_name }}</div>
+            </div>
+
+            <div class="info-section">
+                <div class="info-label">Email del Cliente</div>
+                <div class="info-value">{{ contact_email }}</div>
+            </div>
+
+            <div class="info-section">
+                <div class="info-label">Mensaje</div>
+                <div class="message-box">{{ contact_message }}</div>
+            </div>
+
+            {% if car %}
+            <div class="car-section">
+                <h3>🚗 Vehículo de Interés</h3>
+                <div class="car-details">
+                    <div class="detail-row">
+                        <span class="detail-label">Código: </span>
+                        <span class="detail-value">{{ car.code }}</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Vehículo: </span>
+                        <span class="detail-value">{{ car.brand }} {{ car.model }}</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Año: </span>
+                        <span class="detail-value">{{ car.year }}</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Kilómetros: </span>
+                        <span class="detail-value">{{ "{:,}".format(car.km) }} km</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Precio: </span>
+                        <span class="detail-value">${{ "{:,}".format(car.price) }}</span>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+
+            {% if plan %}
+            <div class="plan-section">
+                <h3>💳 Plan de Financiación de Interés</h3>
+                <div class="plan-details">
+                    <div class="detail-row">
+                        <span class="detail-label">Plan: </span>
+                        <span class="detail-value">{{ plan.name }}</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Tasa: </span>
+                        <span class="detail-value">{{ plan.rate }} ({{ plan.rateLabel }})</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Plazo: </span>
+                        <span class="detail-value">Hasta {{ plan.months }} meses</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Anticipo: </span>
+                        <span class="detail-value">{{ plan.downPayment }}%</span>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+
+        <div class="footer">
+            <p>Este es un mensaje automático del sistema de contacto de la concesionaria.</p>
+            <p>Por favor, responde directamente a {{ contact_email }}</p>
+        </div>
+    </div>
+</body>
+
+</html>
