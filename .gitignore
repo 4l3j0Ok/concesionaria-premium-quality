@@ -214,4 +214,3 @@ __marimo__/
 .streamlit/secrets.toml
 # Database
 database.db
-src/backend/static/data
