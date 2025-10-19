@@ -8,11 +8,15 @@ const currentYear = new Date().getFullYear();
 <footer>
   <content>
     <Logo />
-    <p>
-      © 2025 {currentYear !== 2025 && `- ${currentYear}`}
-      <span class="project-name">{Application.name} by Alejo Sarmiento</span>
-      v{Application.version}.
-    </p>
+    <div class="info">
+      <p>
+        © 2025 {currentYear !== 2025 && `- ${currentYear}`}
+        <span class="project-name">{Application.name} by Alejo Sarmiento</span>.
+      </p>
+      <p>
+        Versión de compilación: <i>{Application.version}</i>.
+      </p>
+    </div>
     <div class="links">
       <a href={Application.githubUrl} target="_blank"
         ><Icon name="mdi:github" /></a
@@ -44,6 +48,12 @@ const currentYear = new Date().getFullYear();
     justify-content: center;
     text-align: center;
     width: 80%;
+  }
+  .info {
+    margin: 1em 0;
+    p {
+      margin: 0.2em 0;
+    }
   }
   .links {
     font-size: 2em;
