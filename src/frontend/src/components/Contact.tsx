@@ -221,6 +221,7 @@ export default function Contact() {
           placeholder="Juan Pérez"
           required
           id="name"
+          autoComplete="name"
           disabled={isSubmitting}
         />
         <label htmlFor="email">Email:</label>
@@ -230,6 +231,7 @@ export default function Contact() {
           placeholder="juan.perez@example.com"
           required
           id="email"
+          autoComplete="email"
           disabled={isSubmitting}
         />
         <label htmlFor="message">Mensaje:</label>
@@ -238,6 +240,7 @@ export default function Contact() {
           placeholder="Hola, quisiera contactarme por..."
           required
           id="message"
+          autoComplete="off"
           disabled={isSubmitting}
         />
         {submitMessage && (
