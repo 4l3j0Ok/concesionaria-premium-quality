@@ -1,14 +1,4 @@
 services:
-  backend:
-    image: alejoide/instituto-concesionaria-backend:latest
-    container_name: instituto-concesionaria-backend
-    build:
-      context: ../src/backend
-      dockerfile: Dockerfile
-    restart: unless-stopped
-    env_file:
-      - ./config/backend/.env
-
   frontend:
     image: alejoide/instituto-concesionaria-frontend:latest
     container_name: instituto-concesionaria-frontend
@@ -22,3 +12,13 @@ services:
       - ./config/frontend/.env
     depends_on:
       - backend
+
+  backend:
+    image: alejoide/instituto-concesionaria-backend:latest
+    container_name: instituto-concesionaria-backend
+    build:
+      context: ../src/backend
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    env_file:
+      - ./config/backend/.env
