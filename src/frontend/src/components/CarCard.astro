@@ -19,7 +19,7 @@ const { car }: { car: Car } = Astro.props;
     >
       <div class="car-image-container">
         {
-          car.img && car.img.startsWith("data:") ? (
+          car.img ? (
             <img
               src={car.img}
               alt={`${car.brand} ${car.model}`}
@@ -81,12 +81,33 @@ const { car }: { car: Car } = Astro.props;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
   }
 
+  .car-image-container {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: linear-gradient(90deg, #f0f0f0 0%, #e0e0e0 50%, #f0f0f0 100%);
+    background-size: 200% 100%;
+    animation: skeleton-loading 1.5s ease-in-out infinite;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    position: relative;
+  }
+
+  @keyframes skeleton-loading {
+    0% {
+      background-position: 200% 0;
+    }
+    100% {
+      background-position: -200% 0;
+    }
+  }
+
   .car img {
     width: 100%;
-    height: auto;
+    height: 100%;
     aspect-ratio: 16 / 9;
     object-fit: cover;
     border-radius: var(--border-radius);
+    display: block;
   }
 
   .car-link {
