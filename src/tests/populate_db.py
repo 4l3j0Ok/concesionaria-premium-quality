@@ -8,7 +8,7 @@ def populate_mocked_cars():
     port = int(os.getenv("APP_PORT", 8000))
     url = f"http://{host}:{port}/cars/"
     headers = {"Content-Type": "application/json"}
-    with open("tests/cars.json", "r") as file:
+    with open("cars.json", "r") as file:
         mocked_cars = json.load(file)
     for car in mocked_cars:
         response = requests.post(url, json=car, headers=headers)

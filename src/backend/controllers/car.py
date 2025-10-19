@@ -15,7 +15,7 @@ class CarController:
         """Guarda la imagen como archivo WebP y retorna la URL"""
         try:
             # Crear directorio de imágenes si no existe
-            images_dir = os.path.join(AppConfig.STATIC_DIR, "images")
+            images_dir = os.path.join(AppConfig.STATIC_DIR, "data")
             os.makedirs(images_dir, exist_ok=True)
 
             # Abrir la imagen desde bytes
@@ -42,7 +42,7 @@ class CarController:
             img.save(filepath, format="WEBP", quality=85, method=6)
 
             # Retornar la URL pública
-            return f"{AppConfig.STATIC_URL}/images/{filename}"
+            return f"{AppConfig.STATIC_URL}/data/{filename}"
         except Exception as e:
             print(f"Error al guardar imagen: {e}")
             raise HTTPException(

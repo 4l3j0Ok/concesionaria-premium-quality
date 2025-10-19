@@ -20,20 +20,6 @@ class CarContactData(BaseModel):
         default=None, description="URL de la imagen del vehículo"
     )
 
-    model_config = {
-        "json_schema_extra": {
-            "example": {
-                "code": "toyota-corolla",
-                "brand": "Toyota",
-                "model": "Corolla",
-                "year": 2022,
-                "km": 15000,
-                "price": 25000.00,
-                "img": "/images/toyota-corolla.jpg",
-            }
-        }
-    }
-
 
 class ContactRequest(BaseModel):
     """Modelo para el request de contacto"""
