@@ -2,13 +2,11 @@ import os
 from core.logger import logger
 from sqlmodel import create_engine, SQLModel, Session, inspect
 from models.car import Car
-
-sqlite_file_name = "database.db"
-sqlite_url = f"sqlite:///{sqlite_file_name}"
+from core.config import DatabaseConfig
 
 # Permite conexiones desde múltiples hilos (útil en aplicaciones web).
 connect_args = {"check_same_thread": False}
-engine = create_engine(sqlite_url, connect_args=connect_args)
+engine = create_engine(DatabaseConfig.SQLITE_URL, connect_args=connect_args)
 
 
 def get_session():
@@ -36,5 +34,5 @@ def create_db_and_tables(drop_existing: bool = False):
 def init_db():
     """Inicializar la base de datos con datos de ejemplo."""
     # Crear las tablas
-    drop_db = os.getenv("CLEAR_DB_ON_STARTUP", "False").lower() == "true"
+    drop_db = DatabaseConfig.CLEAR_DB_ON_STARTUP
     create_db_and_tables(drop_existing=drop_db)

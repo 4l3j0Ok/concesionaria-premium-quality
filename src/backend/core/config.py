@@ -20,6 +20,17 @@ class AppConfig:
     STATIC_URL = os.getenv("STATIC_URL", "/public")
 
 
+class DatabaseConfig:
+    DB_FILE_NAME = "database.db"
+    DB_PATH = f"{BASE_DIR}/data/{DB_FILE_NAME}"
+    SQLITE_URL = f"sqlite:///{DB_PATH}"
+    CLEAR_DB_ON_STARTUP = os.getenv("CLEAR_DB_ON_STARTUP", "false").lower() in (
+        "true",
+        "1",
+        "t",
+    )
+
+
 class LoggerConfig:
     LOG_NAME = os.getenv("LOG_NAME", "app")
     LOG_LEVEL = os.getenv("LOG_LEVEL", "INFO").upper()

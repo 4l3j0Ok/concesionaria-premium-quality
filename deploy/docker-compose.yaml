@@ -24,7 +24,13 @@ services:
     networks:
       - nginx-proxy
       - default
+    volumes:
+      - db-data:/app/data
 
 networks:
   nginx-proxy:
     external: true
+
+volumes:
+  db-data:
+    driver: local
