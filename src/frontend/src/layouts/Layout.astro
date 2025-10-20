@@ -85,7 +85,8 @@ import "@fontsource/work-sans";
     color: white;
   }
 
-  button {
+  button,
+  .primary-button {
     background: linear-gradient(
       180deg,
       var(--primary-color),
@@ -94,17 +95,19 @@ import "@fontsource/work-sans";
     color: white;
     border: none;
     border-radius: var(--border-radius);
-    height: 3em;
+    text-decoration: none;
     cursor: pointer;
-    padding: 0 1.25em;
+    padding: 1em;
     font-size: 1em;
+    text-align: center;
     transition:
       transform 0.3s ease,
       box-shadow 0.3s ease,
       filter 0.3s ease;
   }
 
-  button:hover {
+  button:hover,
+  .primary-button:hover {
     box-shadow: var(--box-shadow);
     filter: brightness(1.1);
   }

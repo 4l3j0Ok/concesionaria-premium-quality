@@ -51,11 +51,15 @@ console.log("Final cars array:", cars);
     </button>
   </div>
   <div class="view-all">
-    <a href="/offers" class="view-all-offers" id="view-all-offers"
-      >Ver todas las ofertas</a
+    <a
+      href="/offers"
+      class="view-all-offers primary-button"
+      id="view-all-offers">Ver todas las ofertas</a
     >
-    <a href="/catalog" class="view-all-button" id="view-all-button"
-      >Ver todo el catálogo</a
+    <a
+      href="/catalog"
+      class="view-all-button primary-button"
+      id="view-all-button">Ver todo el catálogo</a
     >
   </div>
 </section>
@@ -145,6 +149,14 @@ console.log("Final cars array:", cars);
     gap: 2em;
   }
 
+  @media (max-width: 600px) {
+    .offers .view-all {
+      flex-direction: column;
+      align-items: center;
+      gap: 1em;
+    }
+  }
+
   @media (max-width: 768px) {
     .offers-cars {
       max-width: calc(100vw - 80px);
@@ -154,11 +166,6 @@ console.log("Final cars array:", cars);
       width: 40px;
       height: 40px;
       font-size: 1em;
-    }
-
-    .offers .view-all {
-      flex-direction: column;
-      align-items: center;
     }
   }
 </style>
