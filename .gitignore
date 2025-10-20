@@ -215,3 +215,6 @@ __marimo__/
 
 # database
 database.db
+
+# static storage
+src/backend/static/data/

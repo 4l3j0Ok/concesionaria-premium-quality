@@ -5,7 +5,11 @@ from core import db
 from core.config import AppConfig
 from routers import car, contact
 import uvicorn
+import os
 
+
+# Asegurar que existan los directorios necesarios
+os.makedirs(AppConfig.IMAGES_DIR, exist_ok=True)
 
 app = FastAPI(
     title=AppConfig.TITLE,

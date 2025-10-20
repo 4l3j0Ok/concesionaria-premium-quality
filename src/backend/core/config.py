@@ -18,6 +18,8 @@ class AppConfig:
     VERSION = os.getenv("APP_VERSION", "1.0.0")
     STATIC_DIR = f"{BASE_DIR}/static"
     STATIC_URL = "/static"
+    IMAGES_DIR = f"{STATIC_DIR}/data"
+    IMAGES_URL = f"{STATIC_URL}/data"
 
 
 class DatabaseConfig:

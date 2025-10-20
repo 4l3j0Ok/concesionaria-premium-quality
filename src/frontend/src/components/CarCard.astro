@@ -18,25 +18,14 @@ const { car }: { car: Car } = Astro.props;
       style={`view-transition-name: car-card-${car.code}`}
     >
       <div class="car-image-container">
-        {
-          car.img && car.img.startsWith("data:") ? (
-            <img
-              src={car.img}
-              alt={`${car.brand} ${car.model}`}
-              class="car-image"
-              loading="lazy"
-              decoding="async"
-              style={`view-transition-name: image-${car.code}`}
-            />
-          ) : (
-            <Image
-              src={CarImage}
-              alt={`Imagen de ${car.brand} ${car.model}`}
-              class="car-image"
-              loading="lazy"
-            />
-          )
-        }
+        <img
+          src={car.img}
+          alt={`${car.brand} ${car.model}`}
+          class="car-image"
+          loading="lazy"
+          decoding="async"
+          style={`view-transition-name: image-${car.code}`}
+        />
       </div>
       <h2 style={`view-transition-name: car-name-${car.code}`}>
         {car.brand}
