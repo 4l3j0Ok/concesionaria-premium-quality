@@ -67,7 +67,10 @@ const { car }: { car: Car } = Astro.props;
     border-radius: var(--border-radius);
     padding: 1em;
     box-shadow: var(--box-shadow);
-    min-width: 200px;
+    /* evitar que la card se achique y tenga siempre el mismo tamaño */
+    width: 250px;
+    min-height: 280px;
+    height: auto;
     display: flex;
     flex-direction: column;
     gap: 0.5em;
