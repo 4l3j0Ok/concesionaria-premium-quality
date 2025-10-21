@@ -4,11 +4,10 @@
         "model": "Ka",
         "description": "El Ford Ka es un compacto urbano diseñado para moverse con soltura en espacios reducidos. Su tamaño lo hace ideal para estacionar en zonas céntricas, mientras que su motor de bajo consumo ofrece un excelente equilibrio entre rendimiento y economía. El interior, aunque sencillo, brinda una posición de manejo cómoda y un tablero intuitivo. Es un vehículo pensado para quienes buscan practicidad y mantenimiento accesible sin resignar confiabilidad. Perfecto como primer auto o para uso diario en ciudad.",
         "price": 40000000,
-        "promotion_price": 35000000,
+        "promotion_price": null,
         "km": 85000,
         "year": 2010,
         "image": "http://localhost:8000/static/tests/ford-ka.jpg",
-        "code": "ford-ka",
         "features": {
             "fuel_type": "Nafta",
             "transmission": "Manual",
@@ -29,7 +28,6 @@
         "km": 67000,
         "year": 2012,
         "image": "http://localhost:8000/static/tests/chevrolet-spark.jpg",
-        "code": "chevrolet-spark",
         "features": {
             "fuel_type": "Nafta",
             "transmission": "Manual",
@@ -50,7 +48,6 @@
         "km": 45000,
         "year": 2018,
         "image": "http://localhost:8000/static/tests/toyota-corolla.jpg",
-        "code": "toyota-corolla",
         "features": {
             "fuel_type": "Nafta",
             "transmission": "Automática",
@@ -71,7 +68,6 @@
         "km": 92000,
         "year": 2015,
         "image": "http://localhost:8000/static/tests/volkswagen-gol.jpg",
-        "code": "volkswagen-gol",
         "features": {
             "fuel_type": "Nafta",
             "transmission": "Manual",
@@ -92,7 +88,6 @@
         "km": 60000,
         "year": 2017,
         "image": "http://localhost:8000/static/tests/renault-sandero.jpg",
-        "code": "renault-sandero",
         "features": {
             "fuel_type": "Nafta",
             "transmission": "Manual",
@@ -113,7 +108,6 @@
         "km": 30000,
         "year": 2020,
         "image": "http://localhost:8000/static/tests/peugeot-208.jpg",
-        "code": "peugeot-208",
         "features": {
             "fuel_type": "Nafta",
             "transmission": "Automática",
@@ -134,7 +128,6 @@
         "km": 25000,
         "year": 2021,
         "image": "http://localhost:8000/static/tests/fiat-cronos.jpg",
-        "code": "fiat-cronos",
         "features": {
             "fuel_type": "Nafta",
             "transmission": "Manual",
@@ -155,7 +148,6 @@
         "km": 38000,
         "year": 2019,
         "image": "http://localhost:8000/static/tests/honda-civic.jpg",
-        "code": "honda-civic",
         "features": {
             "fuel_type": "Nafta",
             "transmission": "CVT",
@@ -176,7 +168,6 @@
         "km": 54000,
         "year": 2018,
         "image": "http://localhost:8000/static/tests/nissan-versa.jpg",
-        "code": "nissan-versa",
         "features": {
             "fuel_type": "Nafta",
             "transmission": "Automática",
@@ -193,11 +184,10 @@
         "model": "i20",
         "description": "El Hyundai i20 es un hatchback de estética moderna que combina tecnología, eficiencia y una calidad percibida destacable. Su motor de bajo consumo ofrece una respuesta ágil, ideal para el uso urbano, mientras que el interior sorprende por su diseño elegante y su nivel de equipamiento. Los materiales son sólidos y el sistema multimedia ofrece conectividad completa con smartphones. Es un auto pensado para quienes buscan un balance entre estilo, confort y fiabilidad.",
         "price": 97000000,
-        "promotion_price": 94000000,
+        "promotion_price": null,
         "km": 41000,
         "year": 2020,
         "image": "http://localhost:8000/static/tests/hyundai-i20.jpg",
-        "code": "hyundai-i20",
         "features": {
             "fuel_type": "Nafta",
             "transmission": "Manual",
@@ -218,7 +208,6 @@
         "km": 36000,
         "year": 2020,
         "image": "http://localhost:8000/static/tests/kia-rio.jpg",
-        "code": "kia-rio",
         "features": {
             "fuel_type": "Nafta",
             "transmission": "Automática",
@@ -235,11 +224,10 @@
         "model": "Renegade",
         "description": "El Jeep Renegade es un SUV compacto que combina la robustez característica de la marca con un diseño atractivo y juvenil. Su estructura sólida transmite seguridad y su suspensión independiente en las cuatro ruedas garantiza confort incluso fuera del asfalto. Dispone de opciones de tracción delantera o integral, con motores confiables y buen despeje del suelo. Su interior ofrece una posición de manejo elevada, materiales duraderos y una sensación de solidez general que lo diferencia de sus competidores urbanos.",
         "price": 145000000,
-        "promotion_price": 139000000,
+        "promotion_price": null,
         "km": 42000,
         "year": 2019,
         "image": "http://localhost:8000/static/tests/jeep-renegade.jpg",
-        "code": "jeep-renegade",
         "features": {
             "fuel_type": "Nafta",
             "transmission": "Automática",
@@ -260,7 +248,6 @@
         "km": 60000,
         "year": 2020,
         "image": "http://localhost:8000/static/tests/ford-ranger.jpg",
-        "code": "ford-ranger",
         "features": {
             "fuel_type": "Diésel",
             "transmission": "Automática",
@@ -281,7 +268,6 @@
         "km": 29000,
         "year": 2021,
         "image": "http://localhost:8000/static/tests/chevrolet-onix.jpg",
-        "code": "chevrolet-onix",
         "features": {
             "fuel_type": "Nafta",
             "transmission": "Automática",
@@ -298,11 +284,10 @@
         "model": "3",
         "description": "El Mazda 3 es un sedán de diseño elegante que prioriza la experiencia de conducción. Su chasis afinado, la dirección precisa y la calidad de rodaje lo colocan a la altura de vehículos premium. El habitáculo está cuidadosamente diseñado, con materiales de primer nivel y un enfoque minimalista centrado en el conductor. Ofrece buena insonorización y un motor eficiente con excelente respuesta. Es una opción perfecta para quienes disfrutan manejar y buscan un vehículo que combine estética, calidad y desempeño.",
         "price": 155000000,
-        "promotion_price": 150000000,
+        "promotion_price": null,
         "km": 31000,
         "year": 2021,
         "image": "http://localhost:8000/static/tests/mazda-3.jpg",
-        "code": "mazda-3",
         "features": {
             "fuel_type": "Nafta",
             "transmission": "Automática",

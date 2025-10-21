@@ -7,19 +7,18 @@ import { Icon } from "astro-icon/components";
 import type { Car } from "../../types/car";
 const { car_code } = Astro.params;
 
-let cars: Car[] = [];
+let car: Car | null = null;
 
 try {
   const result = await getCar(car_code);
-  if (Array.isArray(result)) {
-    cars = result;
-  } else if (result) {
-    cars = [result];
+  if (Array.isArray(result) && result.length > 0) {
+    car = result[0];
+  } else if (result && !Array.isArray(result)) {
+    car = result;
   }
 } catch (error) {
   console.error("Error fetching car data:", error);
 }
-const car = cars.length > 0 ? cars[0] : null;
 
 ---
 

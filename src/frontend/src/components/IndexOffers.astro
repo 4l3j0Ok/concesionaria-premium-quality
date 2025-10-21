@@ -20,7 +20,12 @@ try {
   cars = [];
 }
 
-console.log("Final cars array:", cars);
+// Filtrar solo las ofertas (cars con promotion_price menor al precio)
+const offerCars = cars.filter(
+  (car) => car.promotion_price && car.promotion_price < car.price,
+);
+
+console.log("Filtered offer cars:", offerCars);
 ---
 
 <section class="offers" id="offers">
@@ -31,14 +36,12 @@ console.log("Final cars array:", cars);
     >
     <div class="offers-cars">
       {
-        cars.length > 0 ? (
-          cars.map((car: Car) => <CarCard car={car} />)
+        offerCars.length > 0 ? (
+          offerCars.map((car: Car) => <CarCard car={car} />)
         ) : (
           <div class="no-cars-message">
-            <p>No hay vehículos disponibles en este momento.</p>
-            <p>
-              Por favor, verifica que la API esté funcionando correctamente.
-            </p>
+            <p>No hay ofertas disponibles en este momento.</p>
+            <p>Revisa el catálogo completo para ver todos los vehículos.</p>
           </div>
         )
       }
