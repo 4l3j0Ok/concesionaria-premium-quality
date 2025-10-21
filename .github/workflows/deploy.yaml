@@ -29,10 +29,13 @@ jobs:
           echo "$BACKEND_ENV_CONTENT" > "$DEPLOY_PATH/config/backend/.env"
           echo "$FRONTEND_ENV_CONTENT" > "$DEPLOY_PATH/config/frontend/.env"
           echo "APP_VERSION=${APP_VERSION}" >> "$DEPLOY_PATH/config/frontend/.env"
+          echo "SERVER_NAME=${APP_URL}" >> "$DEPLOY_PATH/config/nginx/.env"
         env:
           DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
           BACKEND_ENV_CONTENT: ${{ secrets.BACKEND_ENV_CONTENT }}
           FRONTEND_ENV_CONTENT: ${{ secrets.FRONTEND_ENV_CONTENT }}
+          # No esta en los secretos, esta en las variables
+          APP_URL: ${{ vars.APP_URL }}
       - name: Pull changes and restart
         run: |
           cd "${{ secrets.DEPLOY_PATH }}"
