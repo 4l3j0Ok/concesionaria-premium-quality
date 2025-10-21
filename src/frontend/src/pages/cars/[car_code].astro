@@ -6,9 +6,7 @@ import Contact from "../../components/Contact";
 import { Icon } from "astro-icon/components";
 import type { Car } from "../../types/car";
 
-// obtener el código del coche desde los parámetros de la URL /cars/<car_code>
 const { car_code } = Astro.params;
-console.log("Car code from URL params:", car_code);
 
 let car: Car | null = null;
 
