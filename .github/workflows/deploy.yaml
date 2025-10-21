@@ -24,6 +24,7 @@ jobs:
           mkdir -p "$DEPLOY_PATH"
           mkdir -p "$DEPLOY_PATH/config/backend"
           mkdir -p "$DEPLOY_PATH/config/frontend"
+          mkdir -p "$DEPLOY_PATH/config/nginx"
           cp -f ./deploy/docker-compose.yaml "$DEPLOY_PATH/docker-compose.yaml"
           APP_VERSION=$(git describe --tags --abbrev=0 || echo "latest")
           echo "$BACKEND_ENV_CONTENT" > "$DEPLOY_PATH/config/backend/.env"
