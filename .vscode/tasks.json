@@ -26,7 +26,12 @@
         {
             "label": "$(trash) Delete DB",
             "type": "shell",
-            "command": "cd ${workspaceFolder}/src/backend && rm database.db"
+            "command": "cd ${workspaceFolder}/src/backend/data && rm database.db"
         },
+        {
+            "label": "$(database) Populate DB",
+            "type": "shell",
+            "command": "cd ${workspaceFolder}/src/tests && python populate_db.py"
+        }
     ]
 }

@@ -57,13 +57,13 @@ class CarCreate(CarBase):
 
     @computed_field
     @property
-    def car_code(self) -> str:
+    def code(self) -> str:
         return f"{self.brand.lower()}-{self.model.lower()}"
 
 
 class CarRead(CarBase):
     id: int
-    car_code: str
+    code: str
     image: Optional[str] = Field(
         default=None, description="URL de la imagen del vehículo"
     )
@@ -85,10 +85,10 @@ class CarResponse(BaseModel):
 class Car(CarBase, table=True):
     __tablename__ = "car"
     __table_args__ = (
-        UniqueConstraint("car_code", name="uq_car_code"),
+        UniqueConstraint("code", name="uq_car_code"),
         {"extend_existing": True},
     )
-    car_code: str = Field(
+    code: str = Field(
         min_length=1, max_length=50, description="Código único del vehículo"
     )
     image: Optional[str] = Field(

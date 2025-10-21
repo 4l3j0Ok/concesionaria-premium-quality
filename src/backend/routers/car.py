@@ -14,7 +14,7 @@ router = APIRouter(
 def get_cars(
     response: Response,
     session: Annotated[db.Session, Depends(db.get_session)],
-    car_code: Annotated[
+    code: Annotated[
         str | None, Query(description="Filtrar por código del vehículo")
     ] = None,
     brand: Annotated[str | None, Query(description="Filtrar por marca")] = None,
@@ -30,7 +30,7 @@ def get_cars(
 
     cars = CarController.get_cars(
         session=session,
-        car_code=car_code,
+        code=code,
         brand=brand,
         model=model,
         year=year,

@@ -20,7 +20,7 @@ export interface Car {
     promotion_price: number | null;
     km: number;
     year: number;
-    car_code: string;
+    code: string;
     image: string;
     features?: CarFeatures;
 }

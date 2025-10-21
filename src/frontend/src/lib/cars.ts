@@ -9,8 +9,8 @@ const domain = API_URL.endsWith('/')
 const apiUrl = `${domain}/cars`
 
 // devolvemos un array o un solo coche según se le pase el código
-export const getCar = async (car_code?: string): Promise<Car | Car[] | null> => {
-  const url = car_code ? `${apiUrl}?car_code=${car_code}` : apiUrl
+export const getCar = async (code?: string): Promise<Car | Car[] | null> => {
+  const url = code ? `${apiUrl}?code=${code}` : apiUrl
 
   try {
     const res = await fetch(url)

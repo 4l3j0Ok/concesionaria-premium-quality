@@ -17,7 +17,7 @@ class CarController:
         os.makedirs(AppConfig.IMAGES_DIR, exist_ok=True)
 
     @staticmethod
-    def _save_image_to_file(image_bytes: bytes, car_code: str) -> str:
+    def _save_image_to_file(image_bytes: bytes, code: str) -> str:
         """Guarda la imagen en el sistema de archivos y retorna el nombre del archivo"""
         CarController._ensure_images_directory()
 
@@ -39,7 +39,7 @@ class CarController:
                 img = img.convert("RGB")
 
             # Generar nombre de archivo único
-            filename = f"{car_code}_{uuid.uuid4().hex[:8]}.webp"
+            filename = f"{code}_{uuid.uuid4().hex[:8]}.webp"
             filepath = os.path.join(AppConfig.IMAGES_DIR, filename)
 
             # Guardar como WebP con calidad optimizada
@@ -80,7 +80,7 @@ class CarController:
     @staticmethod
     def get_cars(
         session: Session,
-        car_code: Optional[str] = None,
+        code: Optional[str] = None,
         brand: Optional[str] = None,
         model: Optional[str] = None,
         year: Optional[int] = None,
@@ -88,8 +88,8 @@ class CarController:
         limit: int = 100,
     ) -> List[Car]:
         query = select(Car)
-        if car_code:
-            query = query.where(Car.car_code == car_code)
+        if code:
+            query = query.where(Car.code == code)
         if brand:
             query = query.where(Car.brand.contains(brand))
         if model:
@@ -107,13 +107,11 @@ class CarController:
 
     @staticmethod
     def create_car(session: Session, car: CarCreate) -> Car:
-        existing_car = session.exec(
-            select(Car).where(Car.car_code == car.car_code)
-        ).first()
+        existing_car = session.exec(select(Car).where(Car.code == car.code)).first()
         if existing_car:
             raise HTTPException(
                 status_code=409,
-                detail=f"El código del vehículo '{car.car_code}' ya existe.",
+                detail=f"El código del vehículo '{car.code}' ya existe.",
             )
 
         # Primero obtener los datos del modelo
@@ -131,7 +129,7 @@ class CarController:
                 if content_type.startswith("image/"):
                     # Guardar imagen en el sistema de archivos
                     filename = CarController._save_image_to_file(
-                        response.content, car.car_code
+                        response.content, car.code
                     )
                     car_data["image"] = filename
                 else:
@@ -180,7 +178,7 @@ class CarController:
                 if content_type.startswith("image/"):
                     # Guardar imagen en el sistema de archivos
                     filename = CarController._save_image_to_file(
-                        response.content, car.car_code
+                        response.content, car.code
                     )
                     update_data["image"] = filename
                 else:

@@ -5,12 +5,12 @@ import CarFeaturesAccordion from "../../components/CarFeatures";
 import Contact from "../../components/Contact";
 import { Icon } from "astro-icon/components";
 import type { Car } from "../../types/car";
-const { car_code } = Astro.params;
+const { code } = Astro.params;
 
 let car: Car | null = null;
 
 try {
-  const result = await getCar(car_code);
+  const result = await getCar(code);
   if (Array.isArray(result) && result.length > 0) {
     car = result[0];
   } else if (result && !Array.isArray(result)) {
@@ -28,7 +28,7 @@ try {
       <Icon name="bxs:left-arrow" />
     </a>
     {car ? (
-    <section class="car" style={`view-transition-name: car-card-${car.car_code}`}>
+    <section class="car" style={`view-transition-name: car-card-${car.code}`}>
       <section class="car-header">
         <section class="car-presentation">
           {
@@ -36,13 +36,13 @@ try {
               <img
                 src={car.image}
                 alt={`Imagen de ${car.brand} ${car.model}`}
-                style={`view-transition-name: image-${car.car_code}`}
+                style={`view-transition-name: image-${car.code}`}
               />
             )
           }
         </section>
         <section class="car-info">
-          <h1 style={`view-transition-name: car-name-${car.car_code}`}>
+          <h1 style={`view-transition-name: car-name-${car.code}`}>
             {car.brand}
             {car.model}
           </h1>
