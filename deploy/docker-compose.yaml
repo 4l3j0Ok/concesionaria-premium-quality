@@ -31,6 +31,7 @@ services:
     restart: always
     depends_on:
       - frontend
+      - backend
     networks:
       - nginx-proxy
       - default
