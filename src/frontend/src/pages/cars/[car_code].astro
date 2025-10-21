@@ -5,12 +5,15 @@ import CarFeaturesAccordion from "../../components/CarFeatures";
 import Contact from "../../components/Contact";
 import { Icon } from "astro-icon/components";
 import type { Car } from "../../types/car";
-const { code } = Astro.params;
+
+// obtener el código del coche desde los parámetros de la URL /cars/<car_code>
+const { car_code } = Astro.params;
+console.log("Car code from URL params:", car_code);
 
 let car: Car | null = null;
 
 try {
-  const result = await getCar(code);
+  const result = await getCar(car_code);
   if (Array.isArray(result) && result.length > 0) {
     car = result[0];
   } else if (result && !Array.isArray(result)) {
