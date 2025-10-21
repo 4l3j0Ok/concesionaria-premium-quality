@@ -29,7 +29,7 @@ jobs:
           echo "$BACKEND_ENV_CONTENT" > "$DEPLOY_PATH/config/backend/.env"
           echo "$FRONTEND_ENV_CONTENT" > "$DEPLOY_PATH/config/frontend/.env"
           echo "APP_VERSION=${APP_VERSION}" >> "$DEPLOY_PATH/config/frontend/.env"
-          echo "SERVER_NAME=${APP_URL}" >> "$DEPLOY_PATH/config/nginx/.env"
+          echo "SERVER_NAME=${APP_URL}" > "$DEPLOY_PATH/config/nginx/.env"
         env:
           DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
           BACKEND_ENV_CONTENT: ${{ secrets.BACKEND_ENV_CONTENT }}
