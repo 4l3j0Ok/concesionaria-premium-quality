@@ -23,7 +23,7 @@ services:
 
   nginx:
     image: nginx:1.29-alpine
-    container_name: gestion-mi-viejo-nginx
+    container_name: instituto-concesionaria-nginx
     env_file:
       - ./config/nginx/.env
     volumes:
