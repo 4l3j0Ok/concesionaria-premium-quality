@@ -1,6 +1,6 @@
 services:
   frontend:
-    image: alejoide/instituto-concesionaria-frontend:latest
+    # image: alejoide/instituto-concesionaria-frontend:latest
     container_name: instituto-concesionaria-frontend
     build:
       context: ../src/frontend
@@ -14,18 +14,32 @@ services:
       - backend
 
   backend:
-    image: alejoide/instituto-concesionaria-backend:latest
+    # image: alejoide/instituto-concesionaria-backend:latest
     container_name: instituto-concesionaria-backend
     build:
       context: ../src/backend
       dockerfile: Dockerfile
-    restart: unless-stopped
     ports:
       - "8000:8000"
+    restart: unless-stopped
     env_file:
       - ./config/backend/.env
     volumes:
       - db-data:/app/data
+
+  nginx:
+    image: nginx:1.29-alpine
+    container_name: instituto-concesionaria-nginx
+    env_file:
+      - ./config/nginx/.env
+    volumes:
+      - ./config/nginx/nginx.conf:/etc/nginx/templates/default.conf.template:ro
+    restart: always
+    ports:
+      - "1234:80"
+    depends_on:
+      - frontend
+      - backend
 
 volumes:
   db-data:

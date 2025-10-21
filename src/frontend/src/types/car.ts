@@ -11,7 +11,7 @@ export interface CarFeatures {
 }
 
 // Tipos para los datos que vienen de la API
-export interface CarFromAPI {
+export interface Car {
     id: number;
     brand: string;
     model: string;
@@ -21,7 +21,7 @@ export interface CarFromAPI {
     km: number;
     year: number;
     car_code: string;
-    image: string | null; // URL de la imagen
+    image: string;
     features?: CarFeatures;
 }
 
@@ -29,40 +29,5 @@ export interface CarAPIResponse {
     total: number;
     offset: number;
     limit: number;
-    items: CarFromAPI[];
-}
-
-// Tipo para el auto procesado en el frontend
-export interface Car {
-    code: string;
-    brand: string;
-    model: string;
-    description: string;
-    price: number;
-    promotionPrice: number | null;
-    km: number;
-    year: number;
-    img: string; // URL de la imagen o path a imagen por defecto
-    features?: CarFeatures;
-}
-
-// Función helper para convertir de API a formato frontend
-export function mapCarFromAPI(car: CarFromAPI): Car {
-    const domain = import.meta.env.API_URL || 'http://localhost:8000';
-
-    return {
-        code: car.car_code,
-        brand: car.brand,
-        model: car.model,
-        description: car.description,
-        price: car.price,
-        promotionPrice: car.promotion_price,
-        km: car.km,
-        year: car.year,
-        // Si viene URL relativa, agregar dominio; si viene URL completa o null, usar como está
-        img: car.image
-            ? (car.image.startsWith('http') ? car.image : `${domain}${car.image}`)
-            : "/assets/images/chevrolet-astra.webp",
-        features: car.features,
-    };
+    items: Car[];
 }

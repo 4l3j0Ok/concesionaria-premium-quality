@@ -1,4 +1,5 @@
 import type { APIRoute } from 'astro';
+import { API_URL } from "astro:env/server";
 
 export const POST: APIRoute = async ({ request }) => {
   try {
@@ -25,7 +26,7 @@ export const POST: APIRoute = async ({ request }) => {
     };
 
     // Llamar al backend (será resuelto por NGINX en producción)
-    const backendUrl = import.meta.env.API_URL || 'http://localhost:8000';
+    const backendUrl = API_URL || 'http://localhost:8000';
     const response = await fetch(`${backendUrl}/contact`, {
       method: 'POST',
       headers: {

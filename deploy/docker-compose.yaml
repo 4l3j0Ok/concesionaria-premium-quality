@@ -9,9 +9,6 @@ services:
       - ./config/frontend/.env
     depends_on:
       - backend
-    networks:
-      - nginx-proxy
-      - default
 
   backend:
     image: alejoide/instituto-concesionaria-backend:latest
@@ -21,11 +18,22 @@ services:
       - "8000"
     env_file:
       - ./config/backend/.env
+    volumes:
+      - db-data:/app/data
+
+  nginx:
+    image: nginx:1.29-alpine
+    container_name: gestion-mi-viejo-nginx
+    env_file:
+      - ./config/nginx/.env
+    volumes:
+      - ./config/nginx/nginx.conf:/etc/nginx/templates/default.conf.template:ro
+    restart: always
+    depends_on:
+      - frontend
     networks:
       - nginx-proxy
       - default
-    volumes:
-      - db-data:/app/data
 
 networks:
   nginx-proxy:

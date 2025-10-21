@@ -152,9 +152,9 @@ export default function Contact() {
             </div>
             <a href={`/cars/${attachedCar.code}`} className="attachment-link">
               <div className="car-tag">
-                {attachedCar.img && (
+                {attachedCar.image && (
                   <img
-                    src={attachedCar.img}
+                    src={attachedCar.image}
                     alt={`${attachedCar.brand} ${attachedCar.model}`}
                     className="car-tag-image"
                   />

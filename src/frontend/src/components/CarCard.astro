@@ -19,7 +19,7 @@ const { car }: { car: Car } = Astro.props;
     >
       <div class="car-image-container">
         <img
-          src={car.img}
+          src={car.image}
           alt={`${car.brand} ${car.model}`}
           class="car-image"
           loading="lazy"
@@ -33,10 +33,10 @@ const { car }: { car: Car } = Astro.props;
       </h2>
       <div class="price-container">
         {
-          car.promotionPrice && car.promotionPrice < car.price ? (
+          car.promotion_price && car.promotion_price < car.price ? (
             <>
               <p class="old-price">${car.price.toLocaleString()}</p>
-              <p class="price">${car.promotionPrice.toLocaleString()}</p>
+              <p class="price">${car.promotion_price.toLocaleString()}</p>
             </>
           ) : (
             <p class="price">${car.price.toLocaleString()}</p>

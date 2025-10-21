@@ -11,7 +11,7 @@ const { cars, showOnlyOffers = false } = Astro.props;
 
 // Filtrar autos según el modo
 const displayCars = showOnlyOffers
-  ? cars.filter((car) => car.promotionPrice && car.promotionPrice < car.price)
+  ? cars.filter((car) => car.promotion_price && car.promotion_price < car.price)
   : cars;
 ---
 

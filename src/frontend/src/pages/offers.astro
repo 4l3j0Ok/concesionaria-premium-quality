@@ -1,19 +1,22 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import { getCar } from "../lib/cars";
-import { mapCarFromAPI, type Car } from "../types/car";
+import { type Car } from "../types/car";
 import CarGrid from "../components/CarGrid.astro";
 import Contact from "../components/Contact";
 import Stats from "../components/Stats.astro";
 import { Icon } from "astro-icon/components";
 
-// Obtener todos los autos
 let cars: Car[] = [];
 
 try {
-  const carsResponse = await getCar();
-  if (carsResponse && Array.isArray(carsResponse.items)) {
-    cars = carsResponse.items.map(mapCarFromAPI);
+  const result = await getCar();
+  console.log("Fetched cars from API:", result);
+
+  if (Array.isArray(result)) {
+    cars = result;
+  } else if (result) {
+    cars = [result];
   }
 } catch (error) {
   console.error("Error fetching cars from API:", error);
@@ -22,7 +25,7 @@ try {
 
 // Filtrar solo las ofertas (cars con promotion_price)
 const offerCars = cars.filter(
-  (car) => car.promotionPrice && car.promotionPrice < car.price,
+  (car) => car.promotion_price && car.promotion_price < car.price,
 );
 
 // Calcular estadísticas
@@ -31,7 +34,7 @@ const averageDiscount =
     ? Math.round(
         (offerCars.reduce(
           (acc, car) =>
-            acc + ((car.price - (car.promotionPrice || 0)) / car.price) * 100,
+            acc + ((car.price - (car.promotion_price || 0)) / car.price) * 100,
           0,
         ) /
           offerCars.length) *

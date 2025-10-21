@@ -1,15 +1,26 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import { getCar } from "../../lib/cars";
-import { mapCarFromAPI } from "../../types/car";
 import CarFeaturesAccordion from "../../components/CarFeatures";
 import Contact from "../../components/Contact";
 import { Icon } from "astro-icon/components";
-
+import type { Car } from "../../types/car";
 const { car_code } = Astro.params;
-const response = await getCar(car_code);
-const carFromAPI = response.items[0];
-const car = mapCarFromAPI(carFromAPI);
+
+let cars: Car[] = [];
+
+try {
+  const result = await getCar(car_code);
+  if (Array.isArray(result)) {
+    cars = result;
+  } else if (result) {
+    cars = [result];
+  }
+} catch (error) {
+  console.error("Error fetching car data:", error);
+}
+const car = cars.length > 0 ? cars[0] : null;
+
 ---
 
 <Layout>
@@ -17,31 +28,32 @@ const car = mapCarFromAPI(carFromAPI);
     <a href="/#offers" class="back-button primary-button">
       <Icon name="bxs:left-arrow" />
     </a>
-    <section class="car" style={`view-transition-name: car-card-${car.code}`}>
+    {car ? (
+    <section class="car" style={`view-transition-name: car-card-${car.car_code}`}>
       <section class="car-header">
         <section class="car-presentation">
           {
-            car.img && (
+            car.image && (
               <img
-                src={car.img}
+                src={car.image}
                 alt={`Imagen de ${car.brand} ${car.model}`}
-                style={`view-transition-name: image-${car.code}`}
+                style={`view-transition-name: image-${car.car_code}`}
               />
             )
           }
         </section>
         <section class="car-info">
-          <h1 style={`view-transition-name: car-name-${car.code}`}>
+          <h1 style={`view-transition-name: car-name-${car.car_code}`}>
             {car.brand}
             {car.model}
           </h1>
           <p><b>{car.km} km</b></p>
           <div class="price-container">
             {
-              car.promotionPrice && car.promotionPrice < car.price ? (
+              car.promotion_price && car.promotion_price < car.price ? (
                 <>
                   <p class="old-price">${car.price.toLocaleString()}</p>
-                  <p class="price">${car.promotionPrice.toLocaleString()}</p>
+                  <p class="price">${car.promotion_price.toLocaleString()}</p>
                 </>
               ) : (
                 <p class="price">${car.price.toLocaleString()}</p>
@@ -63,6 +75,9 @@ const car = mapCarFromAPI(carFromAPI);
       <p>{car.description}</p>
     </section>
     <CarFeaturesAccordion features={car.features} client:load />
+    ) : (
+      <p>Vehículo no encontrado.</p>
+    ) }
     <Contact client:load />
   </main>
 </Layout>
