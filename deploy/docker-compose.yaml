@@ -20,6 +20,7 @@ services:
       - ./config/backend/.env
     volumes:
       - db-data:/app/data
+      - static-data:/app/static/data
 
   nginx:
     image: nginx:1.29-alpine
@@ -42,4 +43,6 @@ networks:
 
 volumes:
   db-data:
+    driver: local
+  static-data:
     driver: local
