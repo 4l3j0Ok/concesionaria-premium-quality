@@ -81,6 +81,7 @@ class CarController:
     def get_cars(
         session: Session,
         code: Optional[str] = None,
+        search: Optional[str] = None,
         brand: Optional[str] = None,
         model: Optional[str] = None,
         year: Optional[int] = None,
@@ -88,6 +89,11 @@ class CarController:
         limit: int = 100,
     ) -> List[Car]:
         query = select(Car)
+        if search:
+            search_term = f"%{search}%"
+            query = query.where(
+                (Car.brand.ilike(search_term)) | (Car.model.ilike(search_term))
+            )
         if code:
             query = query.where(Car.code == code)
         if brand:

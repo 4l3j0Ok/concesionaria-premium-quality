@@ -17,6 +17,9 @@ def get_cars(
     code: Annotated[
         str | None, Query(description="Filtrar por código del vehículo")
     ] = None,
+    search: Annotated[
+        str | None, Query(description="Filtrar por término de búsqueda")
+    ] = None,
     brand: Annotated[str | None, Query(description="Filtrar por marca")] = None,
     model: Annotated[str | None, Query(description="Filtrar por modelo")] = None,
     year: Annotated[int | None, Query(description="Filtrar por año")] = None,
@@ -31,6 +34,7 @@ def get_cars(
     cars = CarController.get_cars(
         session=session,
         code=code,
+        search=search,
         brand=brand,
         model=model,
         year=year,
